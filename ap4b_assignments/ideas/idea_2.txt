@@ -1,0 +1,73 @@
+# Programming Assignment: Otto's Pet Store
+
+Welcome to your first programming assignment! In this assignment, we'll be using our Python skills to help Otto run his pet store. 
+
+**Remember:** If you get stuck, don't hesitate to ask your friendly chatbot for help! 😉
+
+## Exercise 1: Stocking the Shelves
+
+Otto needs to keep track of how many bags of dog food he has. 
+
+* **Task:** Create a variable named `dog_food_bags` and assign it the number `21.5`. 
+
+```python
+# Create the variable 'dog_food_bags' and assign it the value 21.5
+### BEGIN SOLUTION
+### THIS IS SOLUTION CODE
+dog_food_bags = 21.5 
+### END SOLUTION
+```
+
+```python
+# Unit test for Exercise 1
+assert dog_food_bags == 21.5, "Exercise 1: Make sure you assign the correct value to 'dog_food_bags'."
+print("Test passed")
+```
+
+## Exercise 2: Calculating Dog Years
+
+A customer wants to know how old her dog is in dog years.  Let's help Otto create a program to calculate that. Remember, one human year is about 7 dog years.
+
+* **Task:** Write code that takes the dog's age in human years (stored in the variable `human_years`, which is already defined for you) and calculates the dog's age in dog years. Store the result in a variable called `dog_years`. 
+
+```python
+human_years = 3
+# Calculate the dog's age in dog years and store it in the variable 'dog_years'
+### BEGIN SOLUTION
+### THIS IS SOLUTION CODE
+dog_years = human_years * 7
+### END SOLUTION
+```
+
+```python
+# Unit test for Exercise 2
+assert dog_years == 21, "Exercise 2: Make sure you are multiplying 'human_years' by 7 and storing the result in 'dog_years'."
+print("Test passed")
+```
+
+## Exercise 3:  Creating a Personalized Sign
+
+Otto wants to put up a sign that displays his dog food inventory and a fun fact about dog years.
+
+* **Task:** Use an f-string to create a sign that says: 
+
+> "Otto's Pet Store has [dog_food_bags] bags of dog food in stock! Fun Fact: Did you know that a 3 year old dog is like a [dog_years] year old human?"
+
+Make sure the values in the square brackets are replaced with the values from the variables you created earlier.
+
+```python
+# Create a sign using an f-string and the variables 'dog_food_bags' and 'dog_years'
+### BEGIN SOLUTION
+### THIS IS SOLUTION CODE
+sign = f"Otto's Pet Store has {dog_food_bags} bags of dog food in stock! Fun Fact: Did you know that a 3 year old dog is like a {dog_years} year old human?"
+### END SOLUTION
+print(sign)
+```
+
+```python
+# Unit test for Exercise 3
+assert sign == "Otto's Pet Store has 21.5 bags of dog food in stock! Fun Fact: Did you know that a 3 year old dog is like a 21 year old human?", "Exercise 3:  Check your f-string and variable usage."
+print("Test passed")
+```
+
+Great job helping Otto with his pet store! You're well on your way to becoming a Python pro! 🎉 

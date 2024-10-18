@@ -1,0 +1,94 @@
+```python
+# Exercise 1: Otto's Dog Walking Business
+
+# Otto, the dog whisperer, has started a dog walking business. 
+# He wants to keep track of his earnings and needs your help!
+
+# Write a program to help Otto:
+
+# 1. Create a variable `dogs_walked` and set it to the number of dogs 
+#    Otto walked today. Let's say he walked 3 dogs.
+# 2. Create a variable `price_per_walk` and set it to the price Otto 
+#    charges per walk. Let's say he charges $10 per walk.
+# 3. Calculate Otto's total earnings for the day and store it in a variable 
+#    called `total_earnings`.
+# 4. Print a message that displays Otto's earnings, like this:
+#    "Otto earned $___ today!"
+
+# Remember to test your code!
+
+
+### THIS IS SOLUTION CODE
+dogs_walked = 3
+price_per_walk = 10
+total_earnings = dogs_walked * price_per_walk
+print(f"Otto earned ${total_earnings} today!")
+```
+
+```python
+# Exercise 2: Calculating the Average
+
+# Otto wants to know the average number of dogs he walks each day.
+
+# He kept track of his walks for the past week:
+# * Monday: 2 dogs
+# * Tuesday: 5 dogs
+# * Wednesday: 3 dogs
+# * Thursday: 4 dogs
+# * Friday: 2 dogs
+# * Saturday: 6 dogs
+# * Sunday: 1 dog
+
+# 1. Create a variable for each day of the week and set it to the 
+#    number of dogs walked that day.
+# 2. Calculate the total number of dogs walked during the week.
+# 3. Calculate the average number of dogs walked per day and store 
+#    it in a variable called `average_dogs`.
+# 4. Print a message that displays the average, like this:
+#    "Otto walked an average of ___ dogs per day this week."
+
+# Remember to test your code!
+
+### THIS IS SOLUTION CODE
+monday = 2
+tuesday = 5
+wednesday = 3
+thursday = 4
+friday = 2
+saturday = 6
+sunday = 1
+
+total_dogs = monday + tuesday + wednesday + thursday + friday + saturday + sunday
+average_dogs = total_dogs / 7
+
+print(f"Otto walked an average of {average_dogs:.1f} dogs per day this week.")
+
+```
+
+```python
+# Exercise 3:  Otto's Business Report
+
+# Otto wants to create a weekly report using an LLM to make it look professional.
+# Let's help him generate a report using the information from previous exercises.
+
+from helper_functions import print_llm_response
+
+# Use the following variables in your prompt:
+# * `dogs_walked` (from Exercise 1) 
+# * `total_earnings` (from Exercise 1)
+# * `average_dogs` (from Exercise 2)
+
+# Create a prompt for the LLM that includes the variables above and asks for:
+# 1. A catchy title for the report.
+# 2. A summary of the week's work, including the total dogs walked and earnings.
+# 3. A note about the average number of dogs walked per day.
+
+# Remember to test your code!
+
+### THIS IS SOLUTION CODE
+prompt = f"""Write a short business report for a dog walking business with a catchy title, 
+a summary of the week's work (mentioning a total of {dogs_walked} dogs walked and total earnings of ${total_earnings}), 
+and a note about how many dogs were walked on average each day (the average was {average_dogs:.1f})."""
+
+print_llm_response(prompt) 
+```
