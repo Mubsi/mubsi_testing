@@ -1,0 +1,33 @@
+# ignore my gemini key
+**/sc-gcp-c4-gemini-9dc393caa04d.json
+
+# ignore wandb cache
+**/wandb/*
+**/artifacts/*
+
+# ignore checkpoint files
+**/.ipynb_checkpoints/*
+**/*-checkpoint.ipynb
+**/*-checkpoint.py
+
+# ignore DS_Store files
+**/.DS_Store
+
+# ignore .env file
+.env
+
+# ignore .nbgrader.log
+.nbgrader.log
+
+# ignore pycache files
+**/__pycache__/*
+
+# ignore emacs leftover files
+**/*~
+**/#*#
+
+# ignore virtual environment files
+.venv/
+venv/
+.venv*/
+.python-version
