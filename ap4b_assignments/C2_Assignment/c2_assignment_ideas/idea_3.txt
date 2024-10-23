@@ -1,0 +1,176 @@
+```python
+from helper_functions import print_llm_response, get_llm_response
+
+```
+
+# Graded Assignment 
+
+## Background
+
+You have been hired as a  junior actuary at DataSeguro, a car insurance company. Congratulations! 🎉🎉🎉 Your first task involves analyzing car accident claims and automating some parts of the process using Python and your new AI assistant. 
+
+Get ready to write some code, and remember to use the concepts you've learned so far. Good luck!
+
+## Exercise 1: Storing accident claim data (1 point)
+
+Your first task is to create a list called `accident_claims` to store the claim IDs from five different car accidents. Use the following claim IDs: 
+
+- `"C00001"`
+- `"C00002"`
+- `"C00003"`
+- `"C00004"`
+- `"C00005"` 
+
+```python
+# Create the "accident_claims" list here
+
+### THIS IS SOLUTION CODE
+accident_claims = ["C00001", "C00002", "C00003", "C00004", "C00005"] 
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test Exercise 1
+def test_exercise_1():
+    assert len(accident_claims) == 5, "The list should contain 5 claim IDs."
+    assert accident_claims == ["C00001", "C00002", "C00003", "C00004", "C00005"], "The list does not contain the correct claim IDs."
+    return "Test passed"
+test_exercise_1()
+```
+
+## Exercise 2: Accessing claim information (1 point)
+
+Now, DataSeguro needs you to  access specific car accident claims from the `accident_claims` list. 
+
+Your code should:
+
+1. Retrieve the **third** claim ID from the `accident_claims` list and assign it to a variable called `third_claim`.
+2. Print the value stored in the `third_claim` variable.
+
+```python
+# Access the third accident claim and print it here
+
+### THIS IS SOLUTION CODE
+third_claim  = accident_claims[2]
+print(third_claim)
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test Exercise 2
+def test_exercise_2():
+    assert third_claim == "C00003", "The variable third_claim should contain the claim ID 'C00003'."
+    return "Test passed"
+
+test_exercise_2()
+```
+
+## Exercise 3: Organizing claim details (1 point)
+
+You realize that storing additional information for each claim would be beneficial.  You decide to use dictionaries!
+
+Create a dictionary named `claim_details` for the claim ID `"C00003"`. This dictionary should include the following key-value pairs:
+
+- `"claim_id": "C00003"`
+- `"customer_name": "Isabel"` 
+- `"accident_city": "Medellin"`
+
+```python
+# Create the dictionary "claim_details" here
+
+### THIS IS SOLUTION CODE
+claim_details = {
+    "claim_id": "C00003",
+    "customer_name": "Isabel",
+    "accident_city": "Medellin"
+}
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test Exercise 3
+def test_exercise_3():
+    assert claim_details["claim_id"] == "C00003", "The claim_id should be C00003"
+    assert claim_details["customer_name"] == "Isabel", "The customer_name should be Isabel"
+    assert claim_details["accident_city"] == "Medellin", "The accident_city should be Medellin"
+    return "Test passed"
+test_exercise_3()
+```
+
+## Exercise 4:  Automating claim review (2 points)
+
+DataSeguro wants to expedite the review process for claims based in Medellin.  
+
+Write a program that iterates through each claim in `accident_claims` and prints a message indicating whether the claim meets the following criteria:
+
+* **Claim ID is present in the `claim_details` dictionary:** If the claim ID is in the dictionary, print  _"Review required for claim [claim ID] in Medellin."_ 
+* **Claim ID is not present in the `claim_details` dictionary:** If the claim ID is **not** in the dictionary, print _"No review needed for claim [claim ID].".
+
+For example, if the claim ID is "C00003" and it is present in the `claim_details` dictionary, your program should print:
+
+```
+Review required for claim C00003 in Medellin. 
+```
+
+```python
+# Write your program for claim review automation here
+
+### THIS IS SOLUTION CODE
+for claim in accident_claims:
+    if claim == claim_details["claim_id"]:
+        print(f"Review required for claim {claim} in Medellin.")
+    else:
+        print(f"No review needed for claim {claim}.")
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test Exercise 4
+def test_exercise_4():
+    # You'll need to update the 'claim_details' dictionary 
+    # and potentially add more test cases here. 
+
+    # Example test case for claim ID "C00003"
+    assert "Review required for claim C00003 in Medellin." in  [print(f"Review required for claim {claim} in Medellin.") if claim == claim_details["claim_id"] else print(f"No review needed for claim {claim}.") for claim in accident_claims], "The program is not correctly identifying claims that require review in Medellin."
+    
+    return "Test passed"
+test_exercise_4()
+```
+
+## Exercise 5: Generating accident summaries with AI (3 points)
+
+DataSeguro is impressed with your work so far. As a final task, they ask you to generate a short summary for each claim using your AI assistant. 
+
+**Instructions:**
+
+1.  Iterate through each claim ID in the `accident_claims` list.
+2.  For each claim ID, create a prompt for your AI assistant. The prompt should instruct the assistant to write a concise two-sentence summary of a car accident based on a provided Claim ID.
+3.  Use the `print_llm_response()` function to get and print the AI-generated summary for each claim.  
+
+For example, your prompt could look like this:
+
+_"Write a concise two-sentence summary of a car accident based on this Claim ID: [claim ID]"_
+
+```python
+# Implement the program here 
+
+### THIS IS SOLUTION CODE
+for claim in accident_claims:
+    prompt = f"Write a concise two-sentence summary of a car accident based on this Claim ID: {claim}."
+    print_llm_response(prompt)
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test Exercise 5 - Remember to remove this cell before sharing with students
+def test_exercise_5():
+    # Given the structure of exercise 5, it is not possible to write unit tests 
+    # without hardcoding LLM responses.  
+    # We leave it to your discretion to determine if additional tests are necessary.
+    return "Test passed"
+test_exercise_5()
+```
+
+```python
+
+```

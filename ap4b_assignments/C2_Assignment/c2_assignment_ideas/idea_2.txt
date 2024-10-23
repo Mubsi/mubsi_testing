@@ -1,0 +1,268 @@
+```python
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4bd8fbd2-de5c-47bd-bcd9-cbbe8cdc3104",
+   "metadata": {},
+   "source": [
+    "# Graded Assignment: Automating Chores with AI"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f2ba7ff3",
+   "metadata": {},
+   "source": [
+    "## Story Background"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f156dba3",
+   "metadata": {},
+   "source": [
+    "Imagine you have a helpful home assistant AI that can help you manage your chores. It can generate cleaning schedules, estimate chore times, and even provide tips for completing tasks efficiently. Your job is to write the Python code that powers some of these features."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cb48382c",
+   "metadata": {},
+   "source": [
+    "## Exercise 1: Chore Time Estimator (2 points)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5d36fc84-7238-478c-a70b-8b4988dae5b9",
+   "metadata": {},
+   "source": [
+    "Create a dictionary named `chore_times` with the following key-value pairs, representing the estimated time (in minutes) each chore takes to complete:\n",
+    "\n",
+    "| Chore | Time (minutes) |\n",
+    "|---|---| \n",
+    "| \"Dusting\" | 15 |\n",
+    "| \"Vacuuming\" | 20 |\n",
+    "| \"Dishes\" | 30 |\n",
+    "| \"Laundry\" | 45 |\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b2cdf52d-f8be-4eb9-870b-19b0ed83fc25",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### WRITE YOUR CODE HERE ###\n",
+    "chore_times = {}\n",
+    "### --------------------- ###"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "343fb2a6-3bfc-44b8-9dd3-a3d8e177906a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### THIS IS SOLUTION CODE ###\n",
+    "chore_times = {\n",
+    "    \"Dusting\": 15,\n",
+    "    \"Vacuuming\": 20,\n",
+    "    \"Dishes\": 30,\n",
+    "    \"Laundry\": 45\n",
+    "}\n",
+    "### SOLUTION CODE ENDS ###"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "10fe72bf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def test_chore_times():\n",
+    "    assert chore_times == {\"Dusting\": 15, \"Vacuuming\": 20, \"Dishes\": 30, \"Laundry\": 45}, \"The chore_times dictionary is not correct. Please try again.\"\n",
+    "    print(\"Test passed\")\n",
+    "test_chore_times()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7df5e778",
+   "metadata": {},
+   "source": [
+    "## Exercise 2: Quick Chore Finder (3 points)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54e11255",
+   "metadata": {},
+   "source": [
+    "Your AI assistant needs to quickly identify chores that can be done in a limited time. Write Python code that:\n",
+    "\n",
+    "1.  Asks the user how much time they have using `input(\"How much time do you have for chores? (in minutes) \")` and store it in a variable called `available_time`.\n",
+    "2.  Converts the user's input to an integer using `int()`.\n",
+    "3.  Creates an empty list called `quick_chores`.\n",
+    "4.  Uses a `for` loop to iterate through the `chore_times` dictionary from Exercise 1. \n",
+    "5.  Inside the loop, check if the time for the current chore (value in the dictionary) is less than or equal to the `available_time`. If it is, append the chore (key in the dictionary) to the `quick_chores` list.\n",
+    "6.  Finally, print the `quick_chores` list."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c675bd49",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### WRITE YOUR CODE HERE ###\n",
+    "\n",
+    "### --------------------- ###"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5ae55d3c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### THIS IS SOLUTION CODE ###\n",
+    "available_time = input(\"How much time do you have for chores? (in minutes) \")\n",
+    "available_time = int(available_time)\n",
+    "quick_chores = []\n",
+    "for chore, time in chore_times.items():\n",
+    "    if time <= available_time:\n",
+    "        quick_chores.append(chore)\n",
+    "print(quick_chores)\n",
+    "### SOLUTION CODE ENDS ###"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e0b59524",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def test_quick_chores(available_time):\n",
+    "    global quick_chores\n",
+    "    available_time = int(available_time)\n",
+    "    quick_chores = []\n",
+    "    for chore, time in chore_times.items():\n",
+    "        if time <= available_time:\n",
+    "            quick_chores.append(chore)\n",
+    "    assert type(quick_chores) == type([]), \"quick_chores should be a list, please try again\"\n",
+    "    print(\"Test passed\")\n",
+    "test_quick_chores(20)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2cf56776",
+   "metadata": {},
+   "source": [
+    "## Exercise 3: Chore Suggestion with AI (5 points)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2d0a44bf",
+   "metadata": {},
+   "source": [
+    "Now, let's enhance your AI assistant to provide a more helpful response. You want it to suggest a chore based on available time and offer a motivating message. \n",
+    "\n",
+    "1.  Use the code from **Exercise 2** as a starting point (copy and paste it into the code cell below).\n",
+    "2.  If the `quick_chores` list is not empty (its length is greater than 0) after the loop, use `print(f\"You could do this chore: {chore}\")` to suggest the *first* chore from the `quick_chores` list.\n",
+    "3.  Immediately after suggesting the chore, print the motivating message: `print(\"You've got this!\")`\n",
+    "4.  If the `quick_chores` list is empty, print the message `print(\"Take a break, you deserve it!\")`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ac8ed4b1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### WRITE YOUR CODE HERE ###\n",
+    "\n",
+    "### --------------------- ###"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "82fe4e72",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "### THIS IS SOLUTION CODE ###\n",
+    "available_time = input(\"How much time do you have for chores? (in minutes) \")\n",
+    "available_time = int(available_time)\n",
+    "quick_chores = []\n",
+    "for chore, time in chore_times.items():\n",
+    "    if time <= available_time:\n",
+    "        quick_chores.append(chore)\n",
+    "if len(quick_chores) > 0:\n",
+    "    chore = quick_chores[0]\n",
+    "    print(f\"You could do this chore: {chore}\")\n",
+    "    print(\"You've got this!\")\n",
+    "else:\n",
+    "    print(\"Take a break, you deserve it!\")\n",
+    "### SOLUTION CODE ENDS ###\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "05ad7e82",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def test_chore_suggestion(available_time):\n",
+    "    global quick_chores\n",
+    "    available_time = int(available_time)\n",
+    "    quick_chores = []\n",
+    "    for chore, time in chore_times.items():\n",
+    "        if time <= available_time:\n",
+    "            quick_chores.append(chore)\n",
+    "    if len(quick_chores) > 0:\n",
+    "        assert type(quick_chores[0]) == type(\"\"), \"First element of quick_chores should be a string, please try again.\"\n",
+    "    else:\n",
+    "        assert len(quick_chores) == 0, \"quick_chores should be an empty list, please try again.\"\n",
+    "    print(\"Test passed\")       \n",
+    "test_chore_suggestion(10)\n",
+    "test_chore_suggestion(20)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.19"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
+```

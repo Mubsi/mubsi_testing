@@ -1,0 +1,180 @@
+# Programming Assignment 1
+
+## The Case of the Overdue Library Books
+
+Welcome, detectives-in-training, to your first programming assignment! You've learned a lot about Python, and now it's time to put those skills to the test. 🕵️‍♀️🕵️‍♂️
+
+We've got a puzzling case for you: **The Case of the Overdue Library Books**. 
+
+Here's what we know:
+
+* There's a list of books, and some are long overdue! 
+* We need to write a program to identify these overdue books and send friendly reminders to the borrowers. 
+
+Are you up for the challenge? Let's crack this case! 
+
+## Exercise 1: Gathering Evidence
+
+First, we need to gather the evidence. We have a list of books, but it's a bit messy. Let's clean it up and store it in a way that Python understands.
+
+Here's the evidence we've gathered so far:
+
+```python
+books = ["Pride and Prejudice", "The Hitchhiker's Guide to the Galaxy", "To Kill a Mockingbird", "1984"]
+```
+
+**Your Task:**
+
+* Create a new list called `overdue_books`.
+* Add the following books to the `overdue_books` list in this order:
+    * "The Hitchhiker's Guide to the Galaxy"
+    * "To Kill a Mockingbird"
+* Print the `overdue_books` list.
+
+```python
+# Your code goes here!
+
+
+### THIS IS SOLUTION CODE
+overdue_books = []
+overdue_books.append("The Hitchhiker's Guide to the Galaxy")
+overdue_books.append("To Kill a Mockingbird")
+
+print(overdue_books)
+### SOLUTION CODE ENDS
+```
+
+```python
+#Test Excercise 1
+def test_exercise_1(overdue_books):
+    assert overdue_books == ["The Hitchhiker's Guide to the Galaxy", "To Kill a Mockingbird"], "Test failed"
+    print("Test passed")
+
+test_exercise_1(overdue_books)
+```
+
+## Exercise 2: Identifying the Culprits
+
+Great work! Now we have our list of `overdue_books`. But we need to be able to tell our program which books are overdue.
+
+**Your Task:**
+
+* Write code that checks if "Pride and Prejudice" is in the `overdue_books` list. 
+* If it is, print: `"Pride and Prejudice" is overdue. Send reminder!`
+* If it's not, print:  `"Pride and Prejudice" is not overdue.`
+
+```python
+# Your code goes here!
+
+
+### THIS IS SOLUTION CODE
+if "Pride and Prejudice" in overdue_books:
+    print("\"Pride and Prejudice\" is overdue. Send reminder!")
+else:
+    print("\"Pride and Prejudice\" is not overdue.")
+### SOLUTION CODE ENDS
+```
+
+```python
+#Test Excercise 2 - DO NOT CHANGE CODE BELOW
+def test_exercise_2(overdue_books):
+    assert "Pride and Prejudice" not in overdue_books, "Test failed"
+    print("Test passed")
+
+test_exercise_2(overdue_books)
+```
+
+## Exercise 3:  Gathering More Evidence (Dictionaries)
+
+We've got a new lead! We found a library card, and it has some interesting information. Let's store this information in a Python dictionary.
+
+**Your Task:**
+
+* Create a dictionary named `library_card`.
+* Add the following key-value pairs to the dictionary:
+    * `"name": "Arthur Dent"`
+    * `"books_borrowed": 2` 
+* Print the `library_card` dictionary.
+
+```python
+# Your code goes here!
+
+
+### THIS IS SOLUTION CODE
+library_card = {}
+library_card["name"] = "Arthur Dent"
+library_card["books_borrowed"] = 2
+print(library_card)
+### SOLUTION CODE ENDS
+```
+
+```python
+#Test Excercise 3 - DO NOT CHANGE CODE BELOW
+def test_exercise_3(library_card):
+    assert library_card == {"name": "Arthur Dent", "books_borrowed": 2}, "Test failed"
+    print("Test passed")
+
+test_exercise_3(library_card)
+```
+
+## Exercise 4:  Prioritizing Reminders
+
+We need to prioritize our reminders! Let's focus on borrowers who have more than one overdue book.
+
+**Your Task:**
+
+* Write code to check if the number of `books_borrowed` in the `library_card` dictionary is greater than 1.
+* If it is, print: `"Send a high-priority reminder to", library_card["name"]`
+* If not, print `"No need for a high-priority reminder."`
+
+```python
+# Your code goes here!
+
+
+### THIS IS SOLUTION CODE
+if library_card["books_borrowed"] > 1:
+    print("Send a high-priority reminder to", library_card["name"])
+else:
+    print("No need for a high-priority reminder.")
+### SOLUTION CODE ENDS
+```
+
+```python
+#Test Excercise 4 - DO NOT CHANGE CODE BELOW
+def test_exercise_4(library_card):
+    assert library_card["books_borrowed"] > 1, "Test failed"
+    print("Test passed")
+
+test_exercise_4(library_card)
+```
+
+## Exercise 5: AI to the Rescue!
+
+We've identified a borrower who needs a reminder.  Let's use the power of AI to write a polite message.
+
+**Your Task:**
+
+* Use the `print_llm_response()` function with an f-string to create a reminder message.
+* The message should say:  `"Hello", library_card["name"], "! Please return your overdue books as soon as possible. Thank you!"`
+
+```python
+# Your code goes here!
+
+### THIS IS SOLUTION CODE
+message = f"Hello {library_card['name']}! Please return your overdue books as soon as possible. Thank you!"
+print_llm_response(message)
+### SOLUTION CODE ENDS
+```
+
+```python
+#Test Excercise 5 - DO NOT CHANGE CODE BELOW
+def test_exercise_5(library_card):
+    message = f"Hello {library_card['name']}! Please return your overdue books as soon as possible. Thank you!"
+    response = print_llm_response(message)
+    assert "Arthur Dent" in response, "Test failed"
+    print("Test passed")
+
+test_exercise_5(library_card)
+```
+
+Excellent work, detectives! You've successfully used Python to solve **The Case of the Overdue Library Books**. You've learned how to store data, make decisions with your code, and even leverage AI to automate tasks. Keep practicing, and you'll be master detectives in no time! 
