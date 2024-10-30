@@ -1,0 +1,221 @@
+# Programming Assignment: Treasure Hunt
+
+## Story
+
+You are an aspiring treasure hunter who has discovered a series of clues leading to a hidden treasure. These clues are scattered across various journals and travel logs left behind by previous adventurers. Your task is to use your Python skills to decipher these clues, piece together the treasure map, and ultimately discover the hidden treasure.
+
+## Exercises
+
+**Exercise 1: Analyzing the Explorer's Journal**
+
+You stumbled upon an explorer's journal (`explorer_journal.txt`) containing a rambling account of their adventures. Your first task is to determine if this journal is relevant to your treasure hunt.  Write a function `is_treasure_relevant()` that takes the filename as input, reads the file, and uses an LLM to determine if the content mentions "treasure" or "hidden riches". The function should return "Relevant" if it finds these keywords and "Not Relevant" otherwise.
+
+```python
+def is_treasure_relevant(filename):
+    """
+    Analyzes a journal entry to check for relevance to a treasure hunt.
+
+    Args:
+      filename (str): The name of the journal file.
+
+    Returns:
+      str: "Relevant" if the journal mentions "treasure" or "hidden riches", 
+           "Not Relevant" otherwise.
+    """
+    # YOUR CODE HERE
+    ### THIS IS SOLUTION CODE
+    with open(filename, 'r') as f:
+        journal_entry = f.read()
+
+    prompt = f"""
+    You are analyzing a journal entry to check if it is relevant to a treasure hunt.
+    Determine if the provided text mentions "treasure" or "hidden riches".
+
+    Text:
+    {journal_entry}
+
+    Respond with "Relevant" if the journal mentions "treasure" or "hidden riches", "Not Relevant" otherwise.
+    """
+    response = get_llm_response(prompt)
+    return response
+    ### SOLUTION CODE ENDS
+```
+
+```python
+def test_exercise_1():
+    assert is_treasure_relevant("explorer_journal.txt") == "Relevant"
+    assert is_treasure_relevant("irrelevant_journal.txt") == "Not Relevant"
+    print("Test passed")
+
+test_exercise_1()
+```
+
+**Exercise 2: Deciphering Location Clues**
+
+The explorer's journal mentions a hidden map piece located in a specific city. Write a function `extract_city()` that takes the journal entry as input and uses an LLM to extract the city name where the map piece is hidden. The function should return the extracted city name.
+
+```python
+def extract_city(journal_entry):
+    """
+    Extracts the city name where a map piece is hidden from a journal entry.
+
+    Args:
+      journal_entry (str): The text content of the explorer's journal.
+
+    Returns:
+      str: The extracted city name.
+    """
+    # YOUR CODE HERE
+    ### THIS IS SOLUTION CODE
+    prompt = f"""
+    You are given a journal entry from an explorer who has hidden a map piece leading to treasure.
+    Extract the name of the city where the map piece is hidden.
+
+    Journal Entry:
+    {journal_entry}
+
+    Return only the city name.
+    """
+    response = get_llm_response(prompt)
+    return response
+    ### SOLUTION CODE ENDS
+```
+
+```python
+def test_exercise_2():
+    journal_entry = "The first piece of the map is safely tucked away in a secret location in Paris." 
+    assert extract_city(journal_entry) == "Paris"
+    print("Test passed")
+
+test_exercise_2()
+```
+
+**Exercise 3: Retrieving Travel Dates**
+
+You found a travel log (`travel_log.csv`) containing the explorer's past trips. Write a function `get_travel_dates()` that takes the CSV filename and the city name as input, reads the CSV file, and extracts the arrival and departure dates for the explorer's visit to that city. The function should return a dictionary with keys "Arrival" and "Departure" containing the respective dates.
+
+```python
+def get_travel_dates(filename, city_name):
+    """
+    Retrieves the arrival and departure dates for a city from a travel log.
+
+    Args:
+      filename (str): The name of the travel log CSV file.
+      city_name (str): The name of the city to extract travel dates for.
+
+    Returns:
+      dict: A dictionary containing the arrival and departure dates for the city.
+            Example: {'Arrival': '2023-06-15', 'Departure': '2023-06-22'}
+    """
+    # YOUR CODE HERE
+    ### THIS IS SOLUTION CODE
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["City"] == city_name:
+                travel_dates = {"Arrival": row["Arrival"], "Departure": row["Departure"]}
+                return travel_dates
+    ### SOLUTION CODE ENDS
+```
+
+```python
+def test_exercise_3():
+    expected_dates = {'Arrival': '2024-03-10', 'Departure': '2024-03-17'}
+    assert get_travel_dates("travel_log.csv", "Paris") == expected_dates
+    print("Test passed")
+
+test_exercise_3()
+```
+
+**Exercise 4: Assembling the Map Pieces**
+
+The explorer's journal provides cryptic instructions on how to assemble the map pieces. You need to organize these instructions into a coherent list. Write a function `assemble_map_instructions()` that takes the journal entry as input and uses an LLM to extract a numbered list of map assembly instructions from the journal entry. The function should return a string containing the numbered list of instructions.
+
+```python
+def assemble_map_instructions(journal_entry):
+    """
+    Extracts map assembly instructions from the explorer's journal.
+
+    Args:
+      journal_entry (str): The text content of the explorer's journal.
+
+    Returns:
+      str: A numbered list of map assembly instructions.
+    """
+    # YOUR CODE HERE
+    ### THIS IS SOLUTION CODE
+    prompt = f"""
+    You are deciphering cryptic instructions from an explorer's journal on how to assemble a treasure map.
+    Extract these instructions and present them as a numbered list.
+
+    Journal Entry:
+    {journal_entry}
+
+    Return only the numbered list of instructions.
+    """
+    response = get_llm_response(prompt)
+    return response
+    ### SOLUTION CODE ENDS
+```
+
+```python
+def test_exercise_4():
+    journal_entry = "To assemble the map, first align the piece with the symbol of a compass. Then, place the piece showing the ancient tree to its right. Finally, connect the piece depicting the mountain range below the first two."
+    expected_instructions = "1. Align the piece with the symbol of a compass.\n2. Place the piece showing the ancient tree to its right.\n3. Connect the piece depicting the mountain range below the first two."
+    assert assemble_map_instructions(journal_entry) == expected_instructions
+    print("Test passed")
+
+test_exercise_4()
+```
+
+**Exercise 5: Planning the Expedition**
+
+With the map assembled and the location identified, you are ready to plan your expedition. Write a function `plan_expedition()` that takes the city name, arrival date, departure date, and map instructions as input. This function should use an LLM to generate a detailed expedition itinerary, incorporating the travel dates and map assembly instructions. The itinerary should include daily plans for exploring the city and searching for the treasure based on the assembled map. The function should return a string containing the expedition itinerary.
+
+```python
+def plan_expedition(city_name, arrival_date, departure_date, map_instructions):
+    """
+    Generates a detailed expedition itinerary for the treasure hunt.
+
+    Args:
+      city_name (str): The city where the treasure is located.
+      arrival_date (str): The arrival date in YYYY-MM-DD format.
+      departure_date (str): The departure date in YYYY-MM-DD format.
+      map_instructions (str): The numbered list of map assembly instructions.
+
+    Returns:
+      str: The expedition itinerary.
+    """
+    # YOUR CODE HERE
+    ### THIS IS SOLUTION CODE
+    prompt = f"""
+    You are planning a treasure hunt expedition to {city_name}. You will arrive on {arrival_date} and depart on {departure_date}.
+    You have assembled a treasure map using the following instructions:
+    {map_instructions}
+
+    Create a detailed itinerary for your expedition, including daily plans for exploring the city and searching for the treasure based on the assembled map.
+    """
+    response = get_llm_response(prompt)
+    return response
+    ### SOLUTION CODE ENDS
+```
+
+```python
+def test_exercise_5():
+    city_name = "Paris"
+    arrival_date = "2024-03-10"
+    departure_date = "2024-03-17"
+    map_instructions = "1. Align the piece with the symbol of a compass.\n2. Place the piece showing the ancient tree to its right.\n3. Connect the piece depicting the mountain range below the first two."
+    itinerary = plan_expedition(city_name, arrival_date, departure_date, map_instructions)
+    assert city_name in itinerary
+    assert arrival_date in itinerary
+    assert departure_date in itinerary
+    assert map_instructions in itinerary
+    print("Test passed")
+
+test_exercise_5()
+```
+
+## Good Luck!
+
+Now you have all the tools you need to embark on your treasure hunt. Use your Python programming skills, combined with the power of LLMs, to analyze the clues, plan your expedition, and uncover the hidden treasure! 💰🗺️

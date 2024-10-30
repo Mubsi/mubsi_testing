@@ -1,0 +1,208 @@
+```python
+import csv
+
+### DO NOT REMOVE THIS CELL
+# This cell is added to load the helper functions
+from helper_functions import print_llm_response, get_llm_response, display_table
+from IPython.display import Markdown
+
+```
+
+# Programming Assignment 1
+
+## Story: 
+
+You are a writer working on a travel blog. You have journal entries from trips to different cities around the world stored as `.txt` files. You also have a `.csv` file named `travel_info.csv` containing basic information about each trip, including the city, country, and dates of travel. 
+
+Your goal for this assignment is to write Python code that will help you organize this information, analyze it, and ultimately generate blog posts for each city you visited.
+
+## Exercise 1: Reading Travel Information
+
+Write a function called `read_travel_info` that takes a filename as a parameter and reads the travel information from a CSV file. The function should return a list of dictionaries, where each dictionary represents a trip with the following keys: `'City'`, `'Country'`, `'Arrival'`, and `'Departure'`.
+
+```python
+def read_travel_info(filename):
+    # YOUR CODE HERE
+    
+# Example usage:
+travel_data = read_travel_info('travel_info.csv')
+print(travel_data)
+```
+
+```python
+### THIS IS SOLUTION CODE
+def read_travel_info(filename):
+    f = open(filename, "r")
+    
+    csv_reader = csv.DictReader(f)
+    data = []
+    for row in csv_reader:
+        data.append(row)
+    f.close()
+    
+    return data
+    
+# Example usage:
+travel_data = read_travel_info('travel_info.csv')
+print(travel_data)
+### SOLUTION CODE ENDS
+```
+
+```python
+### DO NOT REMOVE THIS CELL
+# This cell is for testing your function.
+assert read_travel_info('travel_info.csv')[0] == {'City': 'London', 'Country': 'United Kingdom', 'Arrival': '2024-03-10', 'Departure': '2024-03-15'}
+print("Test passed")
+```
+
+## Exercise 2: Reading Journal Entries
+
+Write a function called `read_journal_entry` that takes a filename as a parameter and reads the journal entry from a text file. The function should return the journal entry as a string.
+
+```python
+def read_journal_entry(filename):
+    # YOUR CODE HERE
+
+# Example usage:
+london_entry = read_journal_entry('london.txt')
+print(london_entry)
+```
+
+```python
+### THIS IS SOLUTION CODE
+def read_journal_entry(filename):
+    f = open(filename, 'r')
+    entry = f.read()
+    f.close()
+    return entry
+
+# Example usage:
+london_entry = read_journal_entry('london.txt')
+print(london_entry)
+### SOLUTION CODE ENDS
+```
+
+```python
+### DO NOT REMOVE THIS CELL
+# This cell is for testing your function.
+assert read_journal_entry('london.txt')[:18] == "London was amazing"
+print("Test passed")
+```
+
+## Exercise 3: Identifying Key Phrases
+
+Write a function called `identify_key_phrases` that takes a journal entry (string) as a parameter and uses an LLM to identify key phrases related to attractions, activities, or experiences. The function should return a list of key phrases. 
+
+```python
+def identify_key_phrases(journal_entry):
+    # YOUR CODE HERE
+
+# Example usage:
+london_phrases = identify_key_phrases(london_entry)
+print(london_phrases)
+```
+
+```python
+### THIS IS SOLUTION CODE
+def identify_key_phrases(journal_entry):
+    prompt = f"""Identify key phrases related to attractions, activities, or experiences mentioned in this journal entry.
+    
+    Journal Entry:
+    {journal_entry}
+    
+    Key Phrases:"""
+
+    phrases = get_llm_response(prompt)
+    return phrases.split('\n')
+
+# Example usage:
+london_phrases = identify_key_phrases(london_entry)
+print(london_phrases)
+### SOLUTION CODE ENDS
+```
+
+```python
+### DO NOT REMOVE THIS CELL
+# This cell is for testing your function.
+assert "British Museum" in identify_key_phrases(london_entry)
+print("Test passed")
+```
+
+## Exercise 4: Creating a Trip Summary
+
+Write a function called `create_trip_summary` that takes a trip dictionary (from `travel_data`) and a list of key phrases as parameters. The function should use an LLM to create a short summary of the trip based on the provided information. The summary should include the city and country, dates of travel, and mention some of the key phrases. The function should return the summary as a string.
+
+```python
+def create_trip_summary(trip, key_phrases):
+    # YOUR CODE HERE
+    
+# Example usage:
+london_summary = create_trip_summary(travel_data[0], london_phrases)
+print(london_summary)
+```
+
+```python
+### THIS IS SOLUTION CODE
+def create_trip_summary(trip, key_phrases):
+    city = trip['City']
+    country = trip['Country']
+    arrival = trip['Arrival']
+    departure = trip['Departure']
+    
+    prompt = f"""Write a short trip summary for a visit to {city}, {country} from {arrival} to {departure}.
+    Mention some of these key attractions or activities: {', '.join(key_phrases)}.
+
+    Trip Summary:"""
+    
+    summary = get_llm_response(prompt)
+    return summary
+
+# Example usage:
+london_summary = create_trip_summary(travel_data[0], london_phrases)
+print(london_summary)
+### SOLUTION CODE ENDS
+```
+
+```python
+### DO NOT REMOVE THIS CELL
+# This cell is for testing your function.
+assert "London" in create_trip_summary(travel_data[0], london_phrases)
+assert "United Kingdom" in create_trip_summary(travel_data[0], london_phrases)
+print("Test passed")
+```
+
+## Exercise 5: Generating Blog Posts
+
+Write a function called `generate_blog_post` that takes a trip dictionary and a journal entry as parameters. The function should call the `identify_key_phrases` and `create_trip_summary` functions to generate a blog post for the trip. The blog post should start with the trip summary, followed by the full journal entry. The function should return the blog post as a string.
+
+```python
+def generate_blog_post(trip, journal_entry):
+    # YOUR CODE HERE
+
+# Example usage:
+london_post = generate_blog_post(travel_data[0], london_entry)
+print(london_post)
+```
+
+```python
+### THIS IS SOLUTION CODE
+def generate_blog_post(trip, journal_entry):
+    phrases = identify_key_phrases(journal_entry)
+    summary = create_trip_summary(trip, phrases)
+    post = f"{summary}\n\n{journal_entry}"
+    return post
+
+# Example usage:
+london_post = generate_blog_post(travel_data[0], london_entry)
+print(london_post)
+### SOLUTION CODE ENDS
+```
+
+```python
+### DO NOT REMOVE THIS CELL
+# This cell is for testing your function.
+assert "London" in generate_blog_post(travel_data[0], london_entry)
+assert "United Kingdom" in generate_blog_post(travel_data[0], london_entry)
+assert "British Museum" in generate_blog_post(travel_data[0], london_entry)
+print("Test passed")
+```
