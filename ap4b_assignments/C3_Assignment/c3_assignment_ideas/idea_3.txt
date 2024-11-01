@@ -1,0 +1,371 @@
+# Programming Assignment: Planning a Conference Trip
+
+Welcome to your first graded programming assignment! In this assignment, you'll be using your Python skills to help plan a conference trip to exciting cities around the world. 
+
+**Story:**
+
+You are part of a team organizing an international conference. Attendees are coming from all over the world, and your team is responsible for providing them with information about accommodation options in each city.  You have access to hotel data in CSV files, and you'll use Python and LLMs to:
+
+1.  Read in hotel data from CSV files
+2.  Filter the data based on different criteria, such as price range and distance from the conference venue
+3.  Generate descriptions of the recommended hotels
+
+Get ready to code your way to a successful conference!
+
+## Exercise 1: Reading Hotel Data
+
+Your first task is to write a function that reads hotel data from a CSV file. The function should take the filename as a parameter and return a list of dictionaries, where each dictionary represents a hotel.
+
+**Skeleton code:**
+
+```python
+import csv
+
+def read_hotel_data(filename):
+    """Reads hotel data from a CSV file.
+
+    Args:
+        filename (str): The name of the CSV file.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary represents a hotel.
+    """
+    # YOUR CODE HERE
+    
+    return hotels
+```
+
+**Example usage:**
+
+```python
+hotels = read_hotel_data('Paris_hotels.csv')
+print(hotels)
+```
+
+**Expected output:**
+
+(Output will vary depending on the contents of the CSV file. The output should be a list of dictionaries, with each dictionary containing information about a hotel.)
+
+**Unit Test:**
+
+```python
+def test_exercise_1():
+  expected_keys = ['Hotel', 'Stars', 'Distance from venue (km)', 'Price per night (USD)']
+  hotels = read_hotel_data('Paris_hotels.csv')
+  assert isinstance(hotels, list), "The function should return a list."
+  assert all(isinstance(hotel, dict) for hotel in hotels), "The list should contain dictionaries."
+  assert all(key in hotel for key in expected_keys for hotel in hotels), "Each dictionary should have the correct keys."
+  print("Test passed")
+
+test_exercise_1()
+```
+
+### THIS IS SOLUTION CODE
+```python
+import csv
+
+def read_hotel_data(filename):
+    """Reads hotel data from a CSV file.
+
+    Args:
+        filename (str): The name of the CSV file.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary represents a hotel.
+    """
+    hotels = []
+    with open(filename, 'r') as f:
+      csv_reader = csv.DictReader(f)
+      for row in csv_reader:
+          hotels.append(row)
+    return hotels
+```
+### SOLUTION CODE ENDS
+
+
+## Exercise 2: Filtering by Price
+
+Next, you need to be able to filter hotels by price range. Write a function that takes a list of hotels (in the format returned by `read_hotel_data`) and a maximum price as parameters. The function should return a new list containing only hotels that cost less than or equal to the maximum price.
+
+**Skeleton code:**
+
+```python
+def filter_by_price(hotels, max_price):
+    """Filters hotels by price.
+
+    Args:
+        hotels (list): A list of hotel dictionaries.
+        max_price (int): The maximum price per night in USD.
+
+    Returns:
+        list: A list of hotel dictionaries that meet the price criteria.
+    """
+    # YOUR CODE HERE
+
+    return affordable_hotels
+```
+
+**Example usage:**
+
+```python
+affordable_hotels = filter_by_price(hotels, 200)
+print(affordable_hotels)
+```
+
+**Expected output:**
+
+(Output will vary depending on the contents of the CSV file. The output should be a list of dictionaries representing hotels that cost less than or equal to \\$200 per night.)
+
+**Unit Test:**
+
+```python
+def test_exercise_2():
+  hotels = read_hotel_data('Paris_hotels.csv')
+  max_price = 200
+  affordable_hotels = filter_by_price(hotels, max_price)
+  assert all(int(hotel['Price per night (USD)']) <= max_price for hotel in affordable_hotels), "The function should return only hotels within the specified price range."
+  print("Test passed")
+
+test_exercise_2()
+```
+
+### THIS IS SOLUTION CODE
+```python
+def filter_by_price(hotels, max_price):
+    """Filters hotels by price.
+
+    Args:
+        hotels (list): A list of hotel dictionaries.
+        max_price (int): The maximum price per night in USD.
+
+    Returns:
+        list: A list of hotel dictionaries that meet the price criteria.
+    """
+    affordable_hotels = []
+    for hotel in hotels:
+        price = int(hotel['Price per night (USD)'])
+        if price <= max_price:
+            affordable_hotels.append(hotel)
+    return affordable_hotels
+```
+### SOLUTION CODE ENDS
+
+
+## Exercise 3: Filtering by Distance
+
+Attendees also want to stay within a certain distance of the conference venue. Write a function that takes a list of hotels and a maximum distance as parameters. The function should return a new list containing only hotels within that distance of the venue.
+
+**Skeleton code:**
+
+```python
+def filter_by_distance(hotels, max_distance):
+    """Filters hotels by distance from the conference venue.
+
+    Args:
+        hotels (list): A list of hotel dictionaries.
+        max_distance (float): The maximum distance from the venue in km.
+
+    Returns:
+        list: A list of hotel dictionaries that meet the distance criteria.
+    """
+    # YOUR CODE HERE
+    
+    return nearby_hotels
+```
+
+**Example usage:**
+
+```python
+nearby_hotels = filter_by_distance(hotels, 5.0)
+print(nearby_hotels)
+```
+
+**Expected output:**
+
+(Output will vary depending on the contents of the CSV file. The output should be a list of dictionaries representing hotels within 5 km of the venue.)
+
+**Unit Test:**
+
+```python
+def test_exercise_3():
+  hotels = read_hotel_data('Paris_hotels.csv')
+  max_distance = 5.0
+  nearby_hotels = filter_by_distance(hotels, max_distance)
+  assert all(float(hotel['Distance from venue (km)']) <= max_distance for hotel in nearby_hotels), "The function should return only hotels within the specified distance."
+  print("Test passed")
+
+test_exercise_3()
+```
+
+### THIS IS SOLUTION CODE
+```python
+def filter_by_distance(hotels, max_distance):
+    """Filters hotels by distance from the conference venue.
+
+    Args:
+        hotels (list): A list of hotel dictionaries.
+        max_distance (float): The maximum distance from the venue in km.
+
+    Returns:
+        list: A list of hotel dictionaries that meet the distance criteria.
+    """
+    nearby_hotels = []
+    for hotel in hotels:
+        distance = float(hotel['Distance from venue (km)'])
+        if distance <= max_distance:
+            nearby_hotels.append(hotel)
+    return nearby_hotels
+```
+### SOLUTION CODE ENDS
+
+## Exercise 4: Generating Hotel Descriptions
+
+Let's make it easier for attendees to choose a hotel by generating short descriptions for each one. Write a function that takes a hotel dictionary as a parameter and uses an LLM to generate a description based on the hotel's name, star rating, and any other relevant information.
+
+**Skeleton code:**
+
+```python
+from helper_functions import get_llm_response
+
+def generate_hotel_description(hotel):
+    """Generates a description of a hotel.
+
+    Args:
+        hotel (dict): A dictionary containing hotel information.
+
+    Returns:
+        str: A description of the hotel.
+    """
+    # YOUR CODE HERE
+
+    return description
+```
+
+**Example usage:**
+
+```python
+hotel = {'Hotel': 'Hotel Le Petit Paris', 'Stars': '3', 'Distance from venue (km)': '2.5', 'Price per night (USD)': '180'}
+description = generate_hotel_description(hotel)
+print(description)
+```
+
+**Expected output:**
+
+(Output will vary depending on the LLM response, but it should be a short description of Hotel Le Petit Paris, mentioning its 3-star rating and potentially other details.)
+
+**Unit Test:**
+
+```python
+def test_exercise_4():
+  hotel = {'Hotel': 'Hotel Le Petit Paris', 'Stars': '3', 'Distance from venue (km)': '2.5', 'Price per night (USD)': '180'}
+  description = generate_hotel_description(hotel)
+  assert isinstance(description, str), "The function should return a string."
+  assert len(description) > 0, "The description should not be empty."
+  assert 'Hotel Le Petit Paris' in description, "The description should include the hotel name."
+  assert '3-star' in description, "The description should include the hotel star rating."
+  print("Test passed")
+
+test_exercise_4()
+```
+
+### THIS IS SOLUTION CODE
+```python
+from helper_functions import get_llm_response
+
+def generate_hotel_description(hotel):
+    """Generates a description of a hotel.
+
+    Args:
+        hotel (dict): A dictionary containing hotel information.
+
+    Returns:
+        str: A description of the hotel.
+    """
+    name = hotel['Hotel']
+    stars = hotel['Stars']
+    distance = hotel['Distance from venue (km)']
+    price = hotel['Price per night (USD)']
+
+    prompt = f"""Generate a short description for a hotel with the following information:
+    Name: {name}
+    Stars: {stars}
+    Distance from conference venue: {distance} km
+    Price per night: ${price}
+    """
+    description = get_llm_response(prompt)
+    return description
+```
+### SOLUTION CODE ENDS
+
+## Exercise 5: Creating a Recommendations File
+
+Finally, let's create a file with recommended hotels for attendees traveling to Paris. You'll need to:
+
+1.  Read in the hotel data from `Paris_hotels.csv`.
+2.  Filter the hotels to include only those that are within 3 km of the venue and cost \\$250 or less per night.
+3.  Generate a description for each recommended hotel.
+4.  Write the recommendations to a new file called `Paris_recommendations.txt` in CSV format. Each row should contain the hotel name and its description, separated by a comma.
+
+**Skeleton code:**
+
+```python
+def create_recommendations_file(city, filename, max_distance, max_price):
+  """Creates a file with hotel recommendations.
+
+  Args:
+      city (str): The name of the city.
+      filename (str): The name of the CSV file containing hotel data.
+      max_distance (float): The maximum distance from the venue in km.
+      max_price (int): The maximum price per night in USD.
+  """
+  # YOUR CODE HERE
+```
+
+**Example usage:**
+
+```python
+create_recommendations_file('Paris', 'Paris_hotels.csv', 3.0, 250)
+```
+
+**Expected output:**
+
+A file named `Paris_recommendations.txt` should be created in the current directory. The file should contain a list of recommended hotels in CSV format, with each row including the hotel name and a short description.
+
+**Unit Test:**
+
+```python
+def test_exercise_5():
+  create_recommendations_file('Paris', 'Paris_hotels.csv', 3.0, 250)
+  with open('Paris_recommendations.txt', 'r') as f:
+    lines = f.readlines()
+  assert len(lines) > 0, "The recommendations file should not be empty."
+  assert all(',' in line for line in lines), "Each line in the file should be in CSV format."
+  print("Test passed")
+
+test_exercise_5()
+```
+
+### THIS IS SOLUTION CODE
+```python
+def create_recommendations_file(city, filename, max_distance, max_price):
+  """Creates a file with hotel recommendations.
+
+  Args:
+      city (str): The name of the city.
+      filename (str): The name of the CSV file containing hotel data.
+      max_distance (float): The maximum distance from the venue in km.
+      max_price (int): The maximum price per night in USD.
+  """
+  hotels = read_hotel_data(filename)
+  nearby_hotels = filter_by_distance(hotels, max_distance)
+  affordable_hotels = filter_by_price(nearby_hotels, max_price)
+
+  with open(f'{city}_recommendations.txt', 'w') as f:
+    f.write('Hotel,Description\n')
+    for hotel in affordable_hotels:
+      description = generate_hotel_description(hotel)
+      f.write(f"{hotel['Hotel']},{description}\n")
+```
+### SOLUTION CODE ENDS
+
+Congratulations! You've successfully used your Python skills to help plan a conference trip. You've learned to read in data, filter it based on different criteria, and use an LLM to generate helpful descriptions. Keep practicing your coding, and you'll be a Python pro in no time!

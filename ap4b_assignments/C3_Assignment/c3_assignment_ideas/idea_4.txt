@@ -1,0 +1,231 @@
+# Treasure Hunt in the Cave of Wonders 💰🗺️
+
+Greetings, intrepid explorers and aspiring Pythonistas! 🐍
+
+We stand at the entrance of the legendary Cave of Wonders, rumored to hold treasures beyond imagination!  Our quest, should we choose to accept it, is to locate a secret stash of gold coins 🪙 hidden within this labyrinthine cavern. But beware! Time is of the essence, as the sun begins its descent, and darkness threatens to engulf us.
+
+Fear not, for we are armed with the power of Python and the wisdom of LLMs, our trusty AI companions! With these tools at our disposal, we shall decipher ancient riddles, unravel cryptic clues, and navigate the treacherous path to untold riches!
+
+## Challenge 1: The Crypt's Dial 🗝️
+
+Before us lies an ancient crypt, its entrance sealed by a mysterious dial. To unlock the secrets within, we must first decipher the code that will turn the dial to the correct number.
+
+An inscription above the dial reads:
+
+> "The dial shall turn to a number, a positive count, born from the hour of the day. Twice the hour, plus its shadow, shall guide your hand true."
+
+This ancient riddle holds the key to opening the crypt. Let's harness our Python prowess to decode it.
+
+**Your Task:**
+1. Craft a Python function named `crypt_dial_code` that takes an integer representing the current hour of the day (between 0 and 23) as input.
+2. Inside the function, calculate the dial code using the formula: `(2 * hour) + (24 - hour)`.
+3. Return the calculated dial code as a positive integer.
+
+```python
+def crypt_dial_code(hour):
+    # YOUR CODE HERE
+    pass  # Replace 'pass' with your implementation
+```
+
+**Example:**
+```python
+crypt_dial_code(10)  # Should return 34
+```
+
+### Unit Test
+
+```python
+def test_crypt_dial_code():
+    assert crypt_dial_code(10) == 34
+    print("Test passed")
+
+test_crypt_dial_code()
+```
+
+### THIS IS SOLUTION CODE
+```python
+def crypt_dial_code(hour):
+    dial_code = (2 * hour) + (24 - hour)
+    return dial_code
+```
+### SOLUTION CODE ENDS
+
+Excellent work! 🎉
+
+The crypt door creaks open, revealing a musty chamber. Inside, you find a faded note that reads:
+
+> "Seek the fable etched upon the cavern wall, the Tale of Luminara. Within its verses lies the path to wisdom."
+
+## Challenge 2: The Fable of Luminara 📜
+
+The note directs us to a writing on the wall, a tale known as the Fable of Luminara. It is said to contain clues about the location of the hidden gold coins. 
+
+Alas, the writing is too lengthy to decipher by hand before darkness descends. Let us call upon our AI companion, the LLM, to extract the hidden message within the fable.
+
+**Your Task:**
+1. Read the contents of the file "fable_of_luminara.txt" using the `open` function and store them in a variable called `fable_text`.
+2. Craft a prompt instructing the LLM to identify the most important message within the fable related to finding hidden treasure.
+3. Pass the prompt and `fable_text` to the `print_llm_response` function to display the LLM's response.
+
+```python
+# YOUR CODE HERE
+```
+
+### Unit Test
+
+```python
+def test_fable_of_luminara():
+    with open("fable_of_luminara.txt", "r") as f:
+        fable_text = f.read()
+    assert "scroll_of_stars" in fable_text.lower()
+    print("Test passed")
+
+test_fable_of_luminara()
+```
+
+### THIS IS SOLUTION CODE
+```python
+# Read the fable from the file
+f = open("fable_of_luminara.txt", "r")
+fable_text = f.read()
+f.close()
+
+# Prompt to extract the key message from the fable
+prompt = f"""
+You are an expert archaeologist deciphering ancient texts. 
+You have found a fable titled "The Fable of Luminara" that is believed 
+to hold clues to the location of a hidden treasure of gold coins. 
+
+Please analyze the following text and identify the most important message
+that could guide someone searching for this hidden treasure.
+
+Fable Text:
+{fable_text}
+"""
+# Pass the prompt to the LLM and display the response
+print_llm_response(prompt)
+```
+### SOLUTION CODE ENDS
+
+The LLM reveals a crucial message hidden within the fable, mentioning a "Scroll of Stars" that holds a record of various treasures found within the cave.
+
+## Challenge 3: The Scroll of Stars ✨
+
+Following the LLM's revelation, you discover a tattered scroll tucked away in a corner of the cave. This must be the Scroll of Stars! 
+
+The scroll is filled with rows and columns of cryptic symbols, likely a detailed record of the treasures within the cave. It appears to be in a format known as CSV (Comma Separated Value), commonly used to store structured data.
+
+**Your Task:**
+1. Read the contents of the file "scroll_of_stars.csv" using the `open` and `csv.DictReader` functions.
+2. Store the contents of the scroll in a list called `scroll_data`. Each item in the list should be a dictionary representing a row in the CSV file.
+
+```python
+import csv
+
+scroll_data = []
+# YOUR CODE HERE
+```
+
+### Unit Test
+
+```python
+def test_scroll_of_stars():
+    assert scroll_data[0]["Location"] == "Chamber of Whispers"
+    print("Test passed")
+
+test_scroll_of_stars()
+```
+
+### THIS IS SOLUTION CODE
+```python
+import csv
+
+scroll_data = []
+
+f = open("scroll_of_stars.csv", "r")
+csv_reader = csv.DictReader(f)
+for row in csv_reader:
+    scroll_data.append(row)
+f.close()
+```
+### SOLUTION CODE ENDS
+
+The scroll's data is now loaded into our Python environment. We are one step closer to finding the treasure!
+
+## Challenge 4: Finding the Gold 🥇
+
+With the Scroll of Stars deciphered, we have a structured record of the cave's treasures. 
+
+The time to sift through this data and pinpoint the location of the gold coins is now!
+
+**Your Task:**
+1. Create an empty list called `gold_coin_locations`.
+2. Iterate through each treasure entry in `scroll_data`.
+3. If the "Type of Treasure" is "Gold coins", append the entire dictionary for that treasure entry to the `gold_coin_locations` list.
+
+```python
+gold_coin_locations = []
+# YOUR CODE HERE
+```
+
+### Unit Test
+
+```python
+def test_gold_coin_locations():
+    assert len(gold_coin_locations) == 2
+    print("Test passed")
+
+test_gold_coin_locations()
+```
+
+### THIS IS SOLUTION CODE
+```python
+gold_coin_locations = []
+
+for treasure in scroll_data:
+    if treasure["Type of Treasure"] == "Gold coins":
+        gold_coin_locations.append(treasure)
+```
+### SOLUTION CODE ENDS
+
+We have successfully extracted the locations of all the gold coin treasures within the cave!
+
+## Challenge 5: Marking the Treasure 📝
+
+As the last rays of sunlight fade, we must act quickly! 
+
+To ensure we don't lose this valuable information, let's record the locations of the gold coin treasures in a new text file.
+
+**Your Task:**
+1. Open a new file called "gold_coin_treasure.txt" in write mode (`'w'`).
+2. Iterate through the `gold_coin_locations` list.
+3. For each gold coin treasure entry, write the treasure's "Location" and "Quantity" in the following format:
+   > Location: [Location] - Quantity: [Quantity]
+4. Remember to close the file after writing all the entries.
+
+```python
+# YOUR CODE HERE
+```
+
+### Unit Test
+
+```python
+def test_gold_coin_treasure_file():
+    with open("gold_coin_treasure.txt", "r") as f:
+        file_contents = f.read()
+    assert "Sunken City" in file_contents
+    print("Test passed")
+
+test_gold_coin_treasure_file()
+```
+
+### THIS IS SOLUTION CODE
+```python
+f = open("gold_coin_treasure.txt", 'w')
+for treasure in gold_coin_locations:
+    f.write(f"Location: {treasure['Location']} - Quantity: {treasure['Quantity']}\n")
+f.close()
+```
+### SOLUTION CODE ENDS
+
+Congratulations, brave adventurers! You have successfully navigated the Cave of Wonders, using your Python skills and the guidance of LLMs to uncover the hidden treasure! 💰🗺️🐍 🎉

@@ -1,0 +1,93 @@
+```python
+# Graded Assignment 1
+```
+
+## Creating a story using Python!
+
+Hi everyone, in this assignment, you will create a fun story about a bear going on an adventure! Sounds exciting? Let's start building!
+
+```python
+# Exercise 1: Setting the Stage
+
+# Let's first create some variables to define the character and setting of our story.
+# Use descriptive variable names! 
+# Remember variable names cannot have spaces, special characters or start with a number.
+### ADD YOUR CODE BELOW ###
+character_name = 
+character_age = 
+setting = 
+
+print(f"Once upon a time, there was a bear named {character_name}.")
+print(f"{character_name} was {character_age} years old and lived in a {setting}.")
+
+### THIS IS SOLUTION CODE
+character_name = "Barney"
+character_age = 5
+setting = "lush forest"
+
+print(f"Once upon a time, there was a bear named {character_name}.")
+print(f"{character_name} was {character_age} years old and lived in a {setting}.")
+### SOLUTION CODE ENDS
+```
+
+```python
+# Exercise 2: Describing the Adventure
+
+# Now, let's add details about the adventure Barney is about to embark on.
+### ADD YOUR CODE BELOW ###
+adventure_type = 
+adventure_location = 
+
+print(f"\nOne day, {character_name} decided to go on a {adventure_type} adventure.")
+print(f"{character_name} wanted to visit the mysterious {adventure_location}.")
+
+### THIS IS SOLUTION CODE
+adventure_type = "fishing"
+adventure_location = "Crystal Lake"
+
+print(f"\nOne day, {character_name} decided to go on a {adventure_type} adventure.")
+print(f"{character_name} wanted to visit the mysterious {adventure_location}.")
+### SOLUTION CODE ENDS
+```
+
+```python
+# Exercise 3: Adding a Challenge
+
+# Every good adventure needs a challenge! Let's introduce one using multiline f-string.
+# Remember how to write multiline string?
+### ADD YOUR CODE BELOW ###
+challenge = 
+print(f"""
+
+However, reaching {adventure_location} wasn't easy. {challenge}""")
+
+### THIS IS SOLUTION CODE
+challenge = f"""{character_name} had to cross a rushing river, climb a steep mountain, \nand outsmart a mischievous fox."""
+print(f"""
+
+However, reaching {adventure_location} wasn't easy. {challenge}""")
+### SOLUTION CODE ENDS
+```
+
+```python
+# Unit Tests
+def test_exercise_1():
+    assert character_name is not None, "Did you create the 'character_name' variable?"
+    assert character_age is not None, "Did you create the 'character_age' variable?"
+    assert setting is not None, "Did you create the 'setting' variable?"
+    print("Test passed")
+
+def test_exercise_2():
+    assert adventure_type is not None, "Did you create the 'adventure_type' variable?"
+    assert adventure_location is not None, "Did you create the 'adventure_location' variable?"
+    print("Test passed")
+
+def test_exercise_3():
+    assert challenge is not None, "Did you create the 'challenge' variable?"
+    assert len(challenge.splitlines()) > 1, "Make sure you used a multiline string for the 'challenge' variable."
+    print("Test passed")
+
+test_exercise_1()
+test_exercise_2()
+test_exercise_3()
+```
