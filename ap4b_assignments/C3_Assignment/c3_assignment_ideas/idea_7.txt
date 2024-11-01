@@ -1,0 +1,336 @@
+```python
+# Import necessary libraries
+from datetime import datetime
+import csv
+
+```
+
+# The Archaeologist's Quest for Gold 🪙
+
+Greetings, aspiring Pythonistas! Today, we embark on an exciting journey into the heart of ancient mysteries. Imagine yourself as an archaeologist, standing at the entrance of a hidden cave, its mouth shrouded in an ethereal mist. The air is thick with the scent of antiquity, whispering tales of forgotten civilizations and treasures lost to time. 
+
+You've ventured into this subterranean labyrinth in search of a legendary hoard of gold coins, whispered to be hidden somewhere within. As you delve deeper, you find yourself in a chamber adorned with cryptic writings on the walls: the chronicles_of_eldoria, fable_of_luminara, legend_of_arcania, myth_of_drakoria, and saga_of_thaloria. In a dusty corner, you spot several scrolls - the scroll_of_aurum, scroll_of_enigma, scroll_of_flames, scroll_of_stars, and scroll_of_tides - their parchments brittle with age.
+
+The setting sun casts long shadows, reminding you that time is of the essence. You must use your Python prowess, along with the wisdom of LLMs, to decipher the clues and uncover the location of the gold coins before darkness consumes the cave.
+
+## Exercise 1: The Crypt's Dial 🗝️
+
+Your path is blocked by a formidable crypt, its entrance sealed with an intricate dial. An inscription above the dial reads: "Time holds the key".  You realize you need to write a Python function that uses the current time to determine the correct number to align with the dial's marker.
+
+### Task:
+
+Write a Python function called `unlock_crypt` that takes the current time of day as a parameter and returns a positive integer. This integer will be the number you need to set on the crypt's dial. 
+
+**Hint:**  The inscription suggests using the hour of the day as a starting point. You might need to perform some mathematical operations to ensure the output is a positive integer relevant to the dial.
+
+```python
+def unlock_crypt(time):
+    # Extract the hour from the time
+    hour = time.hour
+    
+    # You have to come up with mathematical operation which will convert the hour into a number on the dial. 
+    # For this example, we will multiply the hour by 2 and add 5
+    dial_number = hour * 2 + 5
+
+    return dial_number
+```
+
+```python
+### THIS IS SOLUTION CODE
+def unlock_crypt(time):
+    # Extract the hour from the time
+    hour = time.hour
+    
+    # You have to come up with mathematical operation which will convert the hour into a number on the dial. 
+    # For this example, we will multiply the hour by 2 and add 5
+    dial_number = (hour * 2 + 5) % 12
+    if dial_number == 0:
+        dial_number = 12
+    return dial_number
+### SOLUTION CODE ENDS
+```
+
+```python
+# Get the current time
+now = datetime.now()
+
+# Test your function
+dial_position = unlock_crypt(now)
+print(f"Turn the dial to: {dial_position}")
+```
+
+```python
+# Unit test
+import unittest
+class TestUnlockCrypt(unittest.TestCase):
+    def test_unlock_crypt(self):
+        # Assuming the current hour is 10 for testing
+        test_time = datetime(2024, 4, 18, 10, 0, 0)
+        expected_output = 9
+        self.assertEqual(unlock_crypt(test_time), expected_output)
+        print("Test passed")
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+With a satisfying click, the crypt swings open, revealing a small chamber. Inside, you find a single note, its edges singed by fire. The note reads: "When the celestial tapestry unfolds its secrets, seek guidance from the **Fable of Luminara**."
+
+## Exercise 2: Whispers from the Wall 📜
+
+The note directs you to one of the writings on the wall, the Fable of Luminara. This ancient text is likely to hold the next clue in your quest. Time is short, so you decide to employ an LLM to quickly scan the Fable and extract the relevant message.
+
+### Task:
+
+Write a Python function called `read_wall_writing` that reads a text file named "fable_of_luminara.txt". This function should prompt an LLM to identify the clue within the text related to your search for the gold coins. 
+
+**Hint:** Your prompt should instruct the LLM to look for specific keywords related to treasure, location, or any other terms that might indicate a clue within the fable.
+
+```python
+def read_wall_writing(filename):
+    # Read the file contents
+    with open(filename, 'r') as f:
+        text = f.read()
+
+    # Define the prompt for the LLM
+    prompt = f"""
+    You are an archaeologist searching for a hidden treasure of gold coins. 
+    Analyze the following ancient text and extract any clues related to the treasure's location: 
+    ```
+    {text}
+    ```
+    """
+    # Get the LLM response
+    response = # Use a suitable function to get the LLM response here
+
+    return response
+```
+
+```python
+### THIS IS SOLUTION CODE
+def read_wall_writing(filename):
+    # Read the file contents
+    with open(filename, 'r') as f:
+        text = f.read()
+
+    # Define the prompt for the LLM
+    prompt = f"""
+    You are an archaeologist searching for a hidden treasure of gold coins. 
+    Analyze the following ancient text and extract any clues related to the treasure's location: 
+    ```
+    {text}
+    ```
+    """
+    # Get the LLM response
+    response = get_llm_response(prompt)
+
+    return response
+### SOLUTION CODE ENDS
+```
+
+```python
+clue = read_wall_writing("fable_of_luminara.txt")
+print(f"The LLM found the following clue: {clue}")
+```
+
+```python
+# Unit test
+class TestReadWallWriting(unittest.TestCase):
+    def test_read_wall_writing(self):
+        expected_output = "The Scroll of Stars reveals the path to treasures untold."
+        self.assertIn(expected_output, read_wall_writing("fable_of_luminara.txt"))
+        print("Test passed")
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+The LLM successfully deciphers the message hidden within the Fable of Luminara, revealing that the **Scroll of Stars** holds the key to the location of the gold coins!
+
+## Exercise 3: Unfurling the Scroll of Stars ✨
+
+Following the clue from the Fable of Luminara, you locate the Scroll of Stars amongst the pile of ancient documents. You unroll the scroll cautiously, revealing a table of locations and treasures, meticulously recorded in an ancient language. The scroll is remarkably well-preserved, and you notice the language bears a striking resemblance to CSV format.
+
+### Task:
+
+Write a Python function called `extract_scroll_data` that reads a CSV file named "scroll_of_stars.csv". This function should process the CSV data and store each row as a dictionary within a Python list. Each dictionary should represent a location and its corresponding treasure.
+
+**Hint:** Use the `csv.DictReader` to read the CSV file and process each row as a dictionary. Append each dictionary to a list to store all the data from the scroll.
+
+```python
+def extract_scroll_data(filename):
+    # Create an empty list to store the data
+    scroll_data = []
+    
+    # Open the CSV file
+    with open(filename, 'r') as f:
+        # Use csv.DictReader to read the file
+        reader = csv.DictReader(f)
+
+        # Iterate through each row in the reader
+        for row in reader:
+            # Append the row (which is a dictionary) to the list
+            
+    
+    # Return the list of dictionaries
+    return scroll_data
+```
+
+```python
+### THIS IS SOLUTION CODE
+def extract_scroll_data(filename):
+    # Create an empty list to store the data
+    scroll_data = []
+    
+    # Open the CSV file
+    with open(filename, 'r') as f:
+        # Use csv.DictReader to read the file
+        reader = csv.DictReader(f)
+
+        # Iterate through each row in the reader
+        for row in reader:
+            # Append the row (which is a dictionary) to the list
+            scroll_data.append(row)
+    
+    # Return the list of dictionaries
+    return scroll_data
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test your function
+scroll_contents = extract_scroll_data("scroll_of_stars.csv")
+print(scroll_contents)
+```
+
+```python
+# Unit test
+class TestExtractScrollData(unittest.TestCase):
+    def test_extract_scroll_data(self):
+        scroll_contents = extract_scroll_data("scroll_of_stars.csv")
+        self.assertIsInstance(scroll_contents, list)
+        self.assertIsInstance(scroll_contents[0], dict)
+        self.assertEqual(scroll_contents[0]['Location'], 'Celestial Observatory')
+        print("Test passed")
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 4: The Glimmer of Gold 💰
+
+You now possess a list of locations and their treasures from the Scroll of Stars. Your heart races as you remember your goal – to find the gold coins! You need to filter the data and identify the locations where this precious treasure is hidden.
+
+### Task:
+
+Write a Python function called `find_gold_coins` that takes the list of dictionaries you created in the previous exercise as a parameter. This function should create a new list containing only the locations where the "Type of Treasure" is "Gold coins".
+
+**Hint:** Iterate through the list of dictionaries. For each dictionary, check if the value associated with the key "Type of Treasure" is "Gold Coins". If it is, append the entire dictionary to your new list.
+
+```python
+def find_gold_coins(scroll_data):
+    # Create a new list to store the locations with gold coins
+    gold_coin_locations = []
+
+    # Iterate through the scroll_data
+    for location_data in scroll_data:
+        # Check if the "Type of Treasure" is "Gold coins"
+        if location_data["Type of Treasure"] == "Gold Coins":
+            # If it is, append the location_data to the new list
+            
+    # Return the new list
+    return gold_coin_locations
+```
+
+```python
+### THIS IS SOLUTION CODE
+def find_gold_coins(scroll_data):
+    # Create a new list to store the locations with gold coins
+    gold_coin_locations = []
+
+    # Iterate through the scroll_data
+    for location_data in scroll_data:
+        # Check if the "Type of Treasure" is "Gold coins"
+        if location_data["Type of Treasure"] == "Gold Coins":
+            # If it is, append the location_data to the new list
+            gold_coin_locations.append(location_data)
+    # Return the new list
+    return gold_coin_locations
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test your function
+gold_locations = find_gold_coins(scroll_contents)
+print(f"Gold coins can be found in these locations: {gold_locations}")
+```
+
+```python
+# Unit test
+class TestFindGoldCoins(unittest.TestCase):
+    def test_find_gold_coins(self):
+        scroll_contents = extract_scroll_data("scroll_of_stars.csv")
+        gold_locations = find_gold_coins(scroll_contents)
+
+        self.assertIsInstance(gold_locations, list)
+        for location in gold_locations:
+            self.assertEqual(location['Type of Treasure'], 'Gold Coins')
+        print("Test passed")
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 5: Marking Your Map 🗺️
+
+The locations of the gold coins are now revealed! As you prepare to venture further into the cave, you realize the importance of preserving this valuable information. Darkness is closing in, and you need to record these locations before they fade from memory.
+
+### Task:
+
+Write a Python function called `save_treasure_map` that takes the list of gold coin locations as a parameter and saves this information into a text file named "treasure_map.txt".
+
+**Hint:**  Open a new file in write mode (`'w'`). Then, iterate through the list of gold coin locations and write the location information to the file, one location per line.
+
+```python
+def save_treasure_map(gold_locations, filename):
+    # Open the file in write mode
+    with open(filename, 'w') as f:
+        # Iterate through the gold_locations list
+        for location_data in gold_locations:
+            # Write the location data to the file (Hint: use f.write())
+            
+```
+
+```python
+### THIS IS SOLUTION CODE
+def save_treasure_map(gold_locations, filename):
+    # Open the file in write mode
+    with open(filename, 'w') as f:
+        # Iterate through the gold_locations list
+        for location_data in gold_locations:
+            # Write the location data to the file (Hint: use f.write())
+            f.write(f"Location: {location_data['Location']}, Treasure: {location_data['Type of Treasure']}\n")
+### SOLUTION CODE ENDS
+```
+
+```python
+# Test your function
+save_treasure_map(gold_locations, "treasure_map.txt")
+print("Treasure map saved to 'treasure_map.txt'")
+```
+
+```python
+# Unit test
+class TestSaveTreasureMap(unittest.TestCase):
+    def test_save_treasure_map(self):
+        scroll_contents = extract_scroll_data("scroll_of_stars.csv")
+        gold_locations = find_gold_coins(scroll_contents)
+        save_treasure_map(gold_locations, "treasure_map.txt")
+
+        # Check if the file exists
+        self.assertTrue(os.path.exists("treasure_map.txt"))
+
+        # Check if the content is correct
+        with open("treasure_map.txt", "r") as f:
+            content = f.read()
+        self.assertIn("Celestial Observatory", content)
+        self.assertIn("Nebula Valley", content)
+        print("Test passed")
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+With the locations safely recorded on your treasure map, you feel a surge of confidence. The path ahead may be fraught with challenges, but you're ready to face them, armed with your Python skills and the knowledge gleaned from the ancient writings. 
+
+Good luck on your quest for the gold coins, archaeologist! May the spirit of Luminara guide your steps. 
