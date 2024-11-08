@@ -1,0 +1,225 @@
+# Programming Assignment: The Ultimate Candy Challenge 🍬
+
+Welcome, Python wizards! 🧙‍♀️🧙‍♂️ Get ready to put your newfound Python skills to the test with this sweet assignment. You'll embark on a quest through the enchanting world of candy data, using your programming prowess to unravel its delicious secrets. 🍭🍫
+
+**Story Time:**
+
+Imagine you're the newest intern at a famous candy factory 🏭, "Sugar Rush Delights". The factory is buzzing with excitement for their annual "Ultimate Candy Challenge".  Your mission, should you choose to accept it, is to analyze data from past challenges to predict the potential winners of this year's competition.  Think you're up to the challenge? 😎 
+
+## Exercise 1: Unwrapping the Data 🎁
+
+Your first task is to import a function from your trusty toolkit, `helper_functions.py`. This function, `read_candy_data`, will help you access the candy data from previous "Ultimate Candy Challenges".
+
+**Instructions:**
+
+1. Import the `read_candy_data` function from `helper_functions.py`.
+2. Use this function to load the candy data from the file `candy_data.csv` and store it in a variable called `candy_data`.
+3. Print the first 5 rows of `candy_data` to get a glimpse of the sweet treasures it holds.
+
+```python
+# Import the necessary function
+
+# Load the candy data
+
+# Print the first 5 rows of the data
+### THIS IS SOLUTION CODE
+from helper_functions import read_candy_data
+
+candy_data = read_candy_data('candy_data.csv')
+
+for i in range(5):
+    print(candy_data[i])
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise1(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(type(candy_data), list)
+        self.assertEqual(len(candy_data), 75)
+        self.assertEqual(candy_data[0]['Candy Name'], '100 Grand Bar')
+        self.assertEqual(candy_data[0]['Popularity Score'], 67)
+        print("Test passed") # This should print if the implementation is correct.
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 2: Sweet Statistics 📊
+
+Now that you've unwrapped the data, let's dive into some statistical analysis.  The factory chefs are curious about the average popularity score of all candies. 
+
+**Instructions:**
+
+1. Import the `mean` function from the `statistics` module.
+2. Calculate the average popularity score from the 'Popularity Score' column in `candy_data` and store it in a variable called `avg_popularity`.
+3. Print `avg_popularity` to reveal the average sweetness level!
+
+```python
+# Import the required function
+
+# Calculate the average popularity score
+
+# Print the average popularity score
+### THIS IS SOLUTION CODE
+from statistics import mean
+
+popularity_scores = [int(candy['Popularity Score']) for candy in candy_data]
+avg_popularity = mean(popularity_scores)
+
+print(avg_popularity)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise2(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(round(avg_popularity,2), 50.13)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 3: Chocolate Champions 🍫🏆
+
+Chocolate candies are always a crowd favorite. The factory needs your help to identify the top 3 most popular chocolate candies.
+
+**Instructions:**
+
+1. Create an empty list called `chocolate_candies`.
+2. Iterate through `candy_data`. For each candy:
+    - If the 'Chocolate' column value is 'Yes', append the candy's name and popularity score as a dictionary to `chocolate_candies`. 
+3. Sort the `chocolate_candies` list in descending order based on the popularity score.
+4. Print the top 3 chocolate candies and their popularity scores.
+
+```python
+# Create an empty list for chocolate candies
+
+# Iterate through the candy data
+
+    # Check if the candy contains chocolate
+
+        # Append the candy's name and popularity score to the list
+
+# Sort the chocolate candies list based on popularity score
+
+# Print the top 3 chocolate candies and their popularity scores
+### THIS IS SOLUTION CODE
+chocolate_candies = []
+
+for candy in candy_data:
+    if candy['Chocolate'] == 'Yes':
+        chocolate_candies.append({'Candy Name': candy['Candy Name'], 'Popularity Score': int(candy['Popularity Score'])})
+
+chocolate_candies.sort(key=lambda x: x['Popularity Score'], reverse=True)
+        
+for i in range(3):
+    print(f"Candy Name: {chocolate_candies[i]['Candy Name']}, Popularity Score: {chocolate_candies[i]['Popularity Score']}")
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise3(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(chocolate_candies[0]['Candy Name'], 'Reese’s Peanut Butter Cups')
+        self.assertEqual(chocolate_candies[1]['Candy Name'], 'Reese’s Miniatures')
+        self.assertEqual(chocolate_candies[2]['Candy Name'], 'Twix')
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 4: Fruity Delights 🍓🍍
+
+Fruity candies are giving chocolate a run for its money this year!  The factory wants to know how many fruity candies have a popularity score above 60.
+
+**Instructions:**
+
+1. Import the `read_candy_data` function from `helper_functions.py` (if you haven't already).
+2. Create a variable called `fruity_count` and set it to 0.
+3. Iterate through `candy_data`:
+    - If the 'Fruity' column value is 'Yes' and the 'Popularity Score' is greater than 60, increment `fruity_count` by 1.
+4. Print `fruity_count` to reveal the number of popular fruity candies.
+
+```python
+# Import necessary function (if you haven't already)
+
+# Create and initialize fruity_count
+
+# Iterate through the candy data
+
+    # Check for fruity candies with popularity > 60
+
+        # Increment the count
+
+# Print the count of popular fruity candies
+### THIS IS SOLUTION CODE
+from helper_functions import read_candy_data
+
+fruity_count = 0
+for candy in candy_data:
+    if candy['Fruity'] == 'Yes' and int(candy['Popularity Score']) > 60:
+        fruity_count += 1
+        
+print(fruity_count)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise4(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(fruity_count, 9)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 5: The LLM's Prediction 🔮
+
+The factory has a tradition of asking a special guest, the all-knowing LLM, to predict the "Ultimate Candy" winner. 
+
+**Instructions:**
+
+1. Create a prompt asking the LLM to predict this year's winner based on the top 5 most popular candies from `candy_data`.
+2. Use the `get_llm_response` function from `aisetup` to get the LLM's prediction.
+3. Print the LLM's wise prediction.
+
+```python
+# Import the necessary function 
+
+# Create the prompt
+
+# Get the LLM's prediction
+
+# Print the prediction
+### THIS IS SOLUTION CODE
+from aisetup import get_llm_response
+
+candy_data.sort(key=lambda x: int(x['Popularity Score']), reverse=True)
+top_5_candies = [candy['Candy Name'] for candy in candy_data[:5]]
+prompt = f"""Predict the winner of the Ultimate Candy Challenge based on the following top 5 most popular candies from previous years: {', '.join(top_5_candies)}."""
+
+prediction = get_llm_response(prompt)
+print(f"The LLM predicts that the winner will be: {prediction}")
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise5(unittest.TestCase):
+    def test_output(self):
+        self.assertIn('Reese', prediction)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+Congratulations! 🎉 You've successfully navigated the sugary landscape of the "Ultimate Candy Challenge" using your Python magic. 🪄 Now, sit back, relax, and enjoy a well-deserved treat! 🍬 
