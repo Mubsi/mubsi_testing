@@ -1,0 +1,136 @@
+from IPython.core.display import display, HTML, clear_output
+from IPython.display import display, Javascript
+import nbformat
+import time
+import re
+
+################################### Check implementation correct fuction use in ex 1
+def test_exercise_1(learner_output):
+    from ex1_helper_functions import read_candy_data
+    expected_output = read_candy_data('candy_data.csv')
+    
+    assert learner_output == expected_output, "\033[31m \"candy_data\" does not return expected data. Please follow the exercise instructions and try again.\033[0m"
+    
+    print("\033[32mTest Passed. Your code is correct!\033[0m")
+
+
+################################### Check implementation correct fuction use in ex 2    
+def test_exercise_2(learner_output):
+    expected_output = [92, 83, 85, 84, 83, 94, 84, 95, 84, 83, 91, 83, 88, 84, 84, 84, 84, 84, 84]
+    assert learner_output == expected_output, f"\033[31m \"popularity_scores\" does not return expected results.\n\nExpected Output:\n\n{expected_output}\n\nOutput you got:\n\n{learner_output}\n\nPlease follow the exercise instructions and try again.\033[0m"
+    
+    print("\033[32mTest Passed. Your code is correct!\033[0m")
+    
+################################### Check implementation correct fuction use in ex 3
+def test_exercise_3(learner_output):
+    expected_output = 85.94736842105263
+    
+    assert learner_output == expected_output, f"\033[31m \"avg_popularity\" does not return expected results.\n\nExpected Output:\n\n{expected_output}\n\nOutput you got:\n\n{learner_output}\n\nPlease follow the exercise instructions and try again.\033[0m"
+    
+    print("\033[32mTest Passed. Your code is correct!\033[0m")    
+
+
+################################### Check implementation correct fuction use in ex 4    
+def test_exercise_4(learner_output):
+    expected_output = [{'Candy Name': 'Twix', 'Popularity Score': 92, 'Price in USD': 1.25}, {'Candy Name': "M&M's", 'Popularity Score': 94, 'Price in USD': 1.25}, {'Candy Name': 'Snickers', 'Popularity Score': 95, 'Price in USD': 1.25}, {'Candy Name': 'Kit Kat', 'Popularity Score': 91, 'Price in USD': 1.25}, {'Candy Name': 'Starburst', 'Popularity Score': 88, 'Price in USD': 1.0}]
+    
+    assert learner_output == expected_output, f"\033[31m \"top_candies\" does not return expected results.\n\nExpected Output:\n\n{expected_output}\n\nOutput you got:\n\n{learner_output}\n\nPlease follow the exercise instructions and try again.\033[0m"
+    
+    print("\033[32mTest Passed. Your code is correct!\033[0m")
+
+
+################################### Needed for the functions below    
+def autosave():
+    display(Javascript('IPython.notebook.save_checkpoint();'))
+###################################    
+    
+################################### Check for correct import for ex 1    
+def check_ex1_import_statement():
+    autosave()
+    time.sleep(1.5)
+    
+    # Clear previous output
+    clear_output(wait=True)
+    
+    # Load the current notebook
+    with open('C1M4_Assignment.ipynb', 'r') as f:
+        notebook = nbformat.read(f, as_version=4)
+    
+    # Iterate over the cells to find the one with the specified metadata
+    for cell in notebook.cells:
+        if cell.cell_type == 'code' and cell.metadata.get('name') == 'import_cell_1':
+            # Check the code for the import statement
+            if re.search(r'^\s*from\s+ex1_helper_functions\s+import\s+\*\s*$', cell.source, re.MULTILINE):
+                display(HTML('<p style="color: green;">Correct import statement used!</p>'))
+            else:
+                display(HTML('<p style="color: red;">Incorrect import statement. Please use the format: <code>from file_name import all (*)</code></p>'))
+            break
+    
+
+################################### Check for correct import for ex 2            
+def check_ex2_import_statement():
+    autosave()
+    time.sleep(1.5)
+    
+    # Clear previous output
+    clear_output(wait=True)
+    
+    # Load the current notebook
+    with open('C1M4_Assignment.ipynb', 'r') as f:
+        notebook = nbformat.read(f, as_version=4)
+    
+    # Iterate over the cells to find the one with the specified metadata
+    for cell in notebook.cells:
+        if cell.cell_type == 'code' and cell.metadata.get('name') == 'import_cell_2':
+            # Look for the exact import statement using regex
+            if re.search(r'^\s*from\s+ex2_helper_functions\s+import\s+get_popularity_scores,\s*print_scores\s*$', cell.source, re.MULTILINE):
+                display(HTML('<p style="color: green;">Correct import statement used!</p>'))
+            else:
+                display(HTML('<p style="color: red;">Incorrect import statement. Please use the format: <code>from file_name import function_name_1, function_name_2</code></p>'))
+            break
+            
+
+################################### Check for correct import for ex 3            
+def check_ex3_import_statement():
+    autosave()
+    time.sleep(1.5)
+    
+    # Clear previous output
+    clear_output(wait=True)
+    
+    # Load the current notebook
+    with open('C1M4_Assignment.ipynb', 'r') as f:
+        notebook = nbformat.read(f, as_version=4)
+    
+    # Iterate over the cells to find the one with the specified metadata
+    for cell in notebook.cells:
+        if cell.cell_type == 'code' and cell.metadata.get('name') == 'import_cell_3':
+            # Look for the exact import statement using regex
+            if re.search(r'^\s*import\s+statistics\s+as\s+stats\s*$', cell.source, re.MULTILINE):
+                display(HTML('<p style="color: green;">Correct import statement used!</p>'))
+            else:
+                display(HTML('<p style="color: red;">Incorrect import statement. Please use the format: <code>import module_name as alias_name</code> Make sure you are using the same alias name as we expect.</p>'))
+            break 
+            
+            
+################################### Check for correct import for ex 4            
+def check_ex4_import_statement():
+    autosave()
+    time.sleep(1.5)
+    
+    # Clear previous output
+    clear_output(wait=True)
+    
+    # Load the current notebook
+    with open('C1M4_Assignment.ipynb', 'r') as f:
+        notebook = nbformat.read(f, as_version=4)
+    
+    # Iterate over the cells to find the one with the specified metadata
+    for cell in notebook.cells:
+        if cell.cell_type == 'code' and cell.metadata.get('name') == 'import_cell_4':
+            # Look for the exact import statement using regex
+            if re.search(r'^\s*import\s+ex4_helper_functions\s*$', cell.source, re.MULTILINE):
+                display(HTML('<p style="color: green;">Correct import statement used!</p>'))
+            else:
+                display(HTML('<p style="color: red;">Incorrect import statement. Please use the format: <code>import file_name</code></p>'))
+            break             
