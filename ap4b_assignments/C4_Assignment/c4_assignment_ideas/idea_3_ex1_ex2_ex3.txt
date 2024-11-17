@@ -1,0 +1,272 @@
+# Programming Assignment: The Ultimate Candy Challenge 🍬
+
+Welcome, Python wizards! 🧙‍♀️🧙‍♂️ Get ready to put your newfound Python skills to the test with this sweet assignment. You'll embark on a quest through the enchanting world of candy data, using your programming prowess to unravel its delicious secrets. 🍭🍫
+
+**Story Time:**
+
+Imagine you're the newest intern at a famous candy factory 🏭, "Sugar Rush Delights". The factory is buzzing with excitement for their annual "Ultimate Candy Challenge".  Your mission, should you choose to accept it, is to analyze data from past challenges to predict the potential winners of this year's competition.  Think you're up to the challenge? 😎 
+
+## Exercise 1: Unwrapping the Data 🎁
+
+Your first task is to import a function from your trusty toolkit, `helper_functions.py`. This function, `read_candy_data`, will help you access the candy data from previous "Ultimate Candy Challenges".
+
+**Instructions:**
+
+1. Import the `read_candy_data` function from `helper_functions.py`.
+2. Use this function to load the candy data from the file `candy_data.csv` and store it in a variable called `candy_data`.
+3. Print the first 5 rows of `candy_data` to get a glimpse of the sweet treasures it holds.
+
+```python
+# Import the necessary function
+
+# Load the candy data
+
+# Print the first 5 rows of the data
+### THIS IS SOLUTION CODE
+from helper_functions import read_candy_data
+
+candy_data = read_candy_data('candy_data.csv')
+
+for i in range(5):
+    print(candy_data[i])
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise1(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(type(candy_data), list)
+        self.assertEqual(len(candy_data), 75)
+        self.assertEqual(candy_data[0]['Candy Name'], '100 Grand Bar')
+        self.assertEqual(candy_data[0]['Popularity Score'], 67)
+        print("Test passed") # This should print if the implementation is correct.
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 2: Sweet Statistics 📊
+
+Now that you've unwrapped the data, let's dive into some statistical analysis.  The factory chefs are curious about the average popularity score of all candies. 
+
+**Instructions:**
+
+1. Import the `mean` function from the `statistics` module.
+2. Calculate the average popularity score from the 'Popularity Score' column in `candy_data` and store it in a variable called `avg_popularity`.
+3. Print `avg_popularity` to reveal the average sweetness level!
+
+```python
+# Import the required function
+
+# Calculate the average popularity score
+
+# Print the average popularity score
+### THIS IS SOLUTION CODE
+from statistics import mean
+
+popularity_scores = [int(candy['Popularity Score']) for candy in candy_data]
+avg_popularity = mean(popularity_scores)
+
+print(avg_popularity)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise2(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(round(avg_popularity,2), 50.13)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 3: Scrumptious Descriptions 🍫🏆
+
+"Sugar Rush Delights" is creating a new website to showcase their amazing candies!  They want to include detailed descriptions for each candy, but they need your help to gather them from the web.
+
+**Instructions:**
+
+1. Install the `beautifulsoup4` package using `pip`.
+2. Import the `BeautifulSoup` function from `bs4` and the `requests` module.
+3. Create an empty dictionary called `candy_descriptions`.
+4. For each of the top 3 most popular chocolate candies from Exercise 3:
+   - Construct a search URL using the candy's name and the base URL: `https://www.google.com/search?q=`. For example: `https://www.google.com/search?q=Reese’s+Peanut+Butter+Cups`.
+   - Retrieve the HTML content from the search URL using `requests.get()`.
+   - Use `BeautifulSoup` to parse the HTML content.
+   - Find a suitable description from the parsed HTML (you might need to inspect the HTML structure of the search results).
+   - Store the candy name as the key and the description as the value in the `candy_descriptions` dictionary. 
+5. Print the `candy_descriptions` dictionary to reveal the delicious details!
+
+```python
+# Install beautifulsoup4
+
+# Import the necessary function and modules
+
+# Create an empty dictionary for candy descriptions
+
+# Iterate through the top 3 chocolate candies from Exercise 3
+
+    # Construct the search URL
+
+    # Retrieve the HTML content
+
+    # Parse the HTML content using BeautifulSoup
+
+    # Find and extract a suitable description (this may require inspecting the HTML)
+
+    # Store the candy name and description in the dictionary
+
+# Print the candy_descriptions dictionary
+### THIS IS SOLUTION CODE
+!pip install beautifulsoup4
+
+from bs4 import BeautifulSoup
+import requests
+
+candy_descriptions = {}
+
+for i in range(3):
+    candy_name = chocolate_candies[i]['Candy Name']
+    search_url = f"https://www.google.com/search?q={candy_name.replace(' ', '+')}"
+    response = requests.get(search_url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    description = soup.find('div', class_='VwiC3b yXK7lf MUxGbd yDYNvb lyLwlc lEBKkf').text
+    candy_descriptions[candy_name] = description
+
+print(candy_descriptions)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise3(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(type(candy_descriptions), dict)
+        self.assertEqual(len(candy_descriptions), 3)
+        self.assertIn('Reese’s Peanut Butter Cups', candy_descriptions)
+        self.assertIn('Reese’s Miniatures', candy_descriptions)
+        self.assertIn('Twix', candy_descriptions)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 4: Fruity Delights 🍓🍍
+
+Fruity candies are giving chocolate a run for its money this year!  The factory wants to know how many fruity candies have a popularity score above 60.
+
+**Instructions:**
+
+1. Import the `read_candy_data` function from `helper_functions.py` (if you haven't already).
+2. Create a variable called `fruity_count` and set it to 0.
+3. Iterate through `candy_data`:
+    - If the 'Fruity' column value is 'Yes' and the 'Popularity Score' is greater than 60, increment `fruity_count` by 1.
+4. Print `fruity_count` to reveal the number of popular fruity candies.
+
+```python
+# Import necessary function (if you haven't already)
+
+# Create and initialize fruity_count
+
+# Iterate through the candy data
+
+    # Check for fruity candies with popularity > 60
+
+        # Increment the count
+
+# Print the count of popular fruity candies
+### THIS IS SOLUTION CODE
+from helper_functions import read_candy_data
+
+fruity_count = 0
+for candy in candy_data:
+    if candy['Fruity'] == 'Yes' and int(candy['Popularity Score']) > 60:
+        fruity_count += 1
+        
+print(fruity_count)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise4(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(fruity_count, 9)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 5: The LLM's Prediction 🔮
+
+The factory has a tradition of asking a special guest, the all-knowing LLM, to predict the "Ultimate Candy" winner. 
+
+**Instructions:**
+
+1. Create a prompt asking the LLM to predict this year's winner based on the top 5 most popular candies from `candy_data`.
+2. Use the `get_llm_response` function from `aisetup` to get the LLM's prediction.
+3. Print the LLM's wise prediction.
+
+```python
+# Import the necessary function 
+
+# Create the prompt
+
+# Get the LLM's prediction
+
+# Print the prediction
+### THIS IS SOLUTION CODE
+from aisetup import get_llm_response
+
+candy_data.sort(key=lambda x: int(x['Popularity Score']), reverse=True)
+top_5_candies = [candy['Candy Name'] for candy in candy_data[:5]]
+prompt = f"""Predict the winner of the Ultimate Candy Challenge based on the following top 5 most popular candies from previous years: {', '.join(top_5_candies)}."""
+
+prediction = get_llm_response(prompt)
+print(f"The LLM predicts that the winner will be: {prediction}")
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise5(unittest.TestCase):
+    def test_output(self):
+        self.assertIn('Reese', prediction)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+Congratulations! 🎉 You've successfully navigated the sugary landscape of the "Ultimate Candy Challenge" using your Python magic. 🪄 Now, sit back, relax, and enjoy a well-deserved treat! 🍬 
+
+### EXPECTED RELEVANT FILES AND FUNCTIONS ####
+
+```python
+# helper_functions.py
+
+import csv
+
+def read_candy_data(file_path):
+    """
+    Reads candy data from a CSV file.
+
+    Args:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary represents a candy.
+    """
+    candy_data = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            candy_data.append(row)
+    return candy_data
+
+```

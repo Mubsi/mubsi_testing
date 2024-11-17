@@ -1,0 +1,371 @@
+# Programming Assignment: The Ultimate Candy Challenge 🍬
+
+Welcome, Python wizards! 🧙‍♀️🧙‍♂️ Get ready to put your newfound Python skills to the test with this sweet assignment. You'll embark on a quest through the enchanting world of candy data, using your programming prowess to unravel its delicious secrets. 🍭🍫
+
+**Story Time:**
+
+Imagine you're the newest intern at a famous candy factory 🏭, "Sugar Rush Delights". The factory is buzzing with excitement for their annual "Ultimate Candy Challenge".  Your mission, should you choose to accept it, is to analyze data from past challenges to predict the potential winners of this year's competition.  Think you're up to the challenge? 😎 
+
+## Exercise 1: Unwrapping the Data 🎁
+
+Your first task is to import a function from your trusty toolkit, `helper_functions.py`. This function, `read_candy_data`, will help you access the candy data from previous "Ultimate Candy Challenges".
+
+**Instructions:**
+
+1. Import the `read_candy_data` function from `helper_functions.py`.
+2. Use this function to load the candy data from the file `candy_data.csv` and store it in a variable called `candy_data`.
+3. Print the first 5 rows of `candy_data` to get a glimpse of the sweet treasures it holds.
+
+```python
+# Import the necessary function
+
+# Load the candy data
+
+# Print the first 5 rows of the data
+### THIS IS SOLUTION CODE
+from helper_functions import read_candy_data
+
+candy_data = read_candy_data('candy_data.csv')
+
+for i in range(5):
+    print(candy_data[i])
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise1(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(type(candy_data), list)
+        self.assertEqual(len(candy_data), 75)
+        self.assertEqual(candy_data[0]['Candy Name'], '100 Grand Bar')
+        self.assertEqual(candy_data[0]['Popularity Score'], 67)
+        print("Test passed") # This should print if the implementation is correct.
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 2: Sweet Statistics 📊
+
+Now that you've unwrapped the data, let's dive into some statistical analysis.  The factory chefs are curious about the average popularity score of all candies. 
+
+**Instructions:**
+
+1. Import the `mean` function from the `statistics` module.
+2. Calculate the average popularity score from the 'Popularity Score' column in `candy_data` and store it in a variable called `avg_popularity`.
+3. Print `avg_popularity` to reveal the average sweetness level!
+
+```python
+# Import the required function
+
+# Calculate the average popularity score
+
+# Print the average popularity score
+### THIS IS SOLUTION CODE
+from statistics import mean
+
+popularity_scores = [int(candy['Popularity Score']) for candy in candy_data]
+avg_popularity = mean(popularity_scores)
+
+print(avg_popularity)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise2(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(round(avg_popularity,2), 50.13)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 3: Scrumptious Descriptions 🍫🏆🍓🍍
+
+"Sugar Rush Delights" wants to create an online candy catalog 💻 for their "Ultimate Candy Challenge." They need you to gather descriptions of the most popular candies from a renowned candy review website, "Candy Connoisseur" (https://candyconnoisseur.com).
+
+**Instructions:**
+
+1. Install the `beautifulsoup4` package to scrape web data.
+2. Import the `BeautifulSoup` function from `bs4` and the `requests` module. 
+3. Define a function called `get_candy_description` that takes a candy name as input and returns its description from "Candy Connoisseur". 
+   - You can assume that each candy's review page follows the format: "https://candyconnoisseur.com/candy-name". Replace spaces in the candy name with hyphens (-) for the URL.
+   - The description is located within a paragraph `<p>` tag with the class 'candy-description'.
+4. Create a new list called `popular_candies` containing the top 3 most popular chocolate candies from Exercise 3 and the top 3 most popular fruity candies from Exercise 4.
+5. Use the `get_candy_description` function to fetch descriptions for each candy in `popular_candies`.
+6. Print the candy names along with their descriptions.
+
+```python
+# Install the beautifulsoup4 package
+
+# Import necessary functions and modules
+
+# Define the get_candy_description function
+
+    # Construct the URL for the candy's review page
+
+    # Get the HTML content of the page
+
+    # Parse the HTML content using BeautifulSoup
+
+    # Find the paragraph with the candy description
+
+    # Return the description text
+
+# Create the popular_candies list
+
+# Fetch and print descriptions for each popular candy
+### THIS IS SOLUTION CODE
+!pip install beautifulsoup4
+
+from bs4 import BeautifulSoup
+import requests
+
+def get_candy_description(candy_name):
+    url = f"https://candyconnoisseur.com/{candy_name.replace(' ', '-')}"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    description = soup.find('p', class_='candy-description').get_text()
+    return description
+
+popular_candies = [chocolate_candies[i]['Candy Name'] for i in range(3)] + [candy_data[i]['Candy Name'] for i in range(len(candy_data)) if candy_data[i]['Fruity'] == 'Yes' and int(candy_data[i]['Popularity Score']) > 60][:3]
+
+for candy in popular_candies:
+    description = get_candy_description(candy)
+    print(f"{candy}: {description}")
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise3(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(len(popular_candies), 6)
+        self.assertEqual(popular_candies[0], 'Reese’s Peanut Butter Cups')
+        self.assertEqual(popular_candies[1], 'Reese’s Miniatures')
+        self.assertEqual(popular_candies[2], 'Twix')
+        self.assertEqual(popular_candies[3], 'Starburst')
+        self.assertEqual(popular_candies[4], 'Skittles')
+        self.assertEqual(popular_candies[5], 'Sour Patch Kids')
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 4: European Expansion 🇪🇺
+
+"Sugar Rush Delights" has ambitious plans to bring their sweet treats to Europe! 🌍  They're starting with Germany and need your help to figure out the price of their candies in Euros (€).
+
+**Instructions:**
+
+1. Install the `frankfurter` package to access exchange rate data.
+2. Import the `frankfurter` module. 
+3. Define a function called `convert_usd_to_eur` that takes a USD price as input and returns the equivalent price in Euros based on the exchange rate on November 11, 2024.
+    - Use `frankfurter.get_historical_rate` to get the exchange rate for the specified date.
+4.  Assume the price of a box of assorted chocolates is $15 USD. Use `convert_usd_to_eur` to calculate the price in Euros.
+5. Print the Euro price of the chocolates. 
+
+```python
+# Install the frankfurter package 
+
+# Import the necessary module
+
+# Define the convert_usd_to_eur function
+
+    # Get the historical exchange rate 
+
+    # Calculate the Euro price 
+
+    # Return the Euro price 
+
+# Calculate the Euro price of the chocolates
+
+# Print the Euro price 
+### THIS IS SOLUTION CODE
+!pip install frankfurter
+
+import frankfurter
+
+def convert_usd_to_eur(usd_price):
+    exchange_rate = frankfurter.get_historical_rate('USD', 'EUR', '2024-11-11')
+    eur_price = usd_price * exchange_rate
+    return eur_price
+
+chocolate_price_eur = convert_usd_to_eur(15)
+
+print(f"The price of the chocolates in Euros is: €{chocolate_price_eur:.2f}")
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise4(unittest.TestCase):
+    def test_output(self):
+        self.assertEqual(round(chocolate_price_eur,2), 13.75)
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Exercise 5: The Marketing Masterpiece 🎤
+
+"Sugar Rush Delights" wants to create a captivating marketing description for their online candy catalog. They believe the LLM can help them craft the perfect message!
+
+**Instructions:**
+
+1. Import the `get_llm_response` function from `aisetup`.
+2. Create a prompt for the LLM:
+   -  Tell the LLM that it is a marketing copywriter for a candy company.
+   -  Ask it to write a short, enticing description for their online candy catalog.
+   -  Mention that the catalog features a wide variety of candies, including chocolates, gummies, and hard candies.
+3. Use `get_llm_response` to generate the marketing description.
+4. Print the LLM's creative output.
+
+```python
+# Import the necessary function 
+
+# Create the prompt
+
+# Get the LLM's marketing description
+
+# Print the description
+### THIS IS SOLUTION CODE
+from aisetup import get_llm_response
+
+prompt = """You are a marketing copywriter for a candy company. 
+Write a short, enticing description for their online candy catalog. 
+Mention that the catalog features a wide variety of candies, including chocolates, gummies, and hard candies."""
+
+marketing_description = get_llm_response(prompt)
+
+print(marketing_description)
+### SOLUTION CODE ENDS
+```
+
+```python
+import unittest
+
+class TestExercise5(unittest.TestCase):
+    def test_output(self):
+        self.assertGreater(len(marketing_description), 50) # check if description is reasonable length.
+        print("Test passed")
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## Optional Exercise 6: Visualizing Candy Data 📈
+
+"Sugar Rush Delights" wants you to impress their board of directors with a visually appealing chart showcasing the popularity of different candy types.
+
+**Instructions:**
+
+1. Import `pandas` as `pd` and `matplotlib.pyplot` as `plt`.
+2. Create a bar chart that displays the average popularity score for each candy type ('Chocolate', 'Fruity', 'Caramel', 'Peanut/Almond', 'Nougat', 'Crisped Rice Wafer', 'Hard Candy', 'Bar', 'Pluribus').
+    - Use pandas to calculate the average popularity score for each type from the `candy_data`.
+    - Utilize `matplotlib.pyplot` to create the bar chart.
+
+```python
+# Import the necessary modules
+
+# Calculate the average popularity score for each candy type
+
+# Create a bar chart to visualize the popularity scores
+
+# Display the chart
+```
+
+### THIS IS SOLUTION CODE
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+candy_data = read_candy_data('candy_data.csv')
+
+df = pd.DataFrame(candy_data)
+
+average_popularity = df.groupby(['Chocolate', 'Fruity', 'Caramel', 'Peanut/Almond', 'Nougat', 'Crisped Rice Wafer', 'Hard Candy', 'Bar', 'Pluribus'])['Popularity Score'].mean().reset_index()
+
+# Ask LLM for help visualizing the data
+prompt = f"""I want to make a bar chart using matplotlib to visualize the data from the dataframe:
+{average_popularity}
+
+Can you give me the code to do so?"""
+print_llm_response(prompt)
+### SOLUTION CODE ENDS
+```
+
+Congratulations! 🎉 You've successfully navigated the sugary landscape of the "Ultimate Candy Challenge" using your Python magic. 🪄 Now, sit back, relax, and enjoy a well-deserved treat! 🍬 
+
+### EXPECTED RELEVANT FILES AND FUNCTIONS ####
+
+```python
+# helper_functions.py
+
+import csv
+
+def read_candy_data(file_path):
+    """
+    Reads candy data from a CSV file.
+
+    Args:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary represents a candy.
+    """
+    candy_data = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            candy_data.append(row)
+    return candy_data
+```
+
+```python
+# aisetup (this is a package, so just use "from aisetup import get_llm_response" in your code)
+def get_llm_response(prompt):
+    """
+    Gets a response from the OpenAI API.
+
+    Args:
+        prompt (str): The prompt to send to the API.
+
+    Returns:
+        str: The API response.
+    """
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an AI assistant.", 
+            },
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.0, 
+    )
+    response = completion.choices[0].message.content
+    return response
+```
+
+```html
+<!-- candyconnoisseur.com candy review page HTML (example for Reese's Peanut Butter Cups) -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reese’s Peanut Butter Cups - Candy Connoisseur</title>
+</head>
+<body>
+  <h1>Reese’s Peanut Butter Cups</h1>
+
+  <p class="candy-description">A delicious combination of smooth peanut butter encased in rich milk chocolate. A classic candy favorite!</p>
+
+  </body>
+</html>
+```
