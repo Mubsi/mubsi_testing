@@ -1,0 +1,319 @@
+# Programming Assignment 📚
+
+Welcome to this programming assignment! Get ready to put your Python skills to the test. In this assignment, you'll be helping a librarian manage their book records. You'll be using dictionaries, lists, if/else statements, and for loops to complete a series of tasks. Let's get started! 🚀
+
+#### Before you begin 🚦
+
+Before you get started, as before, import `test_your_code` so that your implementated code can be tested.
+
+     Cells that include the tag `### Test your code. Run this.` cannot be edited. Run them as they are.
+
+```python
+import test_your_code
+```
+
+## Exercise 1: The Bookworm's Inventory 📖
+
+**The Situation:** 
+
+Imagine you're a librarian, and a request just came in for the classic novel "To Kill a Mockingbird". 🐦  Before you can tell the eager reader if it's available, you need to check your records. 
+
+**Your Task:** 
+
+Your first task is to represent a book's information using a Python dictionary. This dictionary will store the following details about the book:
+
+- `title` (string): The title of the book.
+- `author` (string): The author of the book.
+- `on_shelf` (boolean): Whether the book is currently on the shelf (`True`) or checked out (`False`).
+- `borrower` (string): The name of the person who has borrowed the book (if it's checked out).
+- `overdue` (boolean): Whether the book is overdue (`True`) or not (`False`).
+- `on_hold` (boolean): Whether the book is on hold for another patron (`True`) or not (`False`).
+
+Initialize the dictionary `book` with the following key/value pairs:
+
+- `title`: To Kill a Mockingbird
+- `author`: Harper Lee
+- `on_shelf`: False
+- `borrower`: Arthur Dent
+- `overdue`: True
+- `on_hold`: False
+
+```python
+### START CODE HERE ###
+
+# Create the dictionary, "book", with key/value pairs as mentioned above
+# Please be sure to use the same upper/lower case spellings structure
+### START OMIT BLOCK ###
+book = {
+    'title': 'To Kill a Mockingbird',
+    'author': 'Harper Lee',
+    'on_shelf': False,
+    'borrower': 'Arthur Dent',
+    'overdue': True,
+    'on_hold': False
+}
+### END OMIT BLOCK ###
+# Add your code here
+
+### END CODE HERE ###
+```
+
+```python
+### Test your code. Run this.
+
+test_your_code.test_exercise_1(book)
+```
+
+## Exercise 2: Is It On the Shelf? 🤔
+
+**The Situation:**
+
+The moment of truth has arrived!  The eager reader is waiting to hear if "To Kill a Mockingbird" is available.  You need to check the `book` dictionary to see if it's available for checkout.
+
+**Your Task:**
+
+Write an `if/else` statement that determines whether the book is available to borrow. 
+
+- **If** the book is `on_shelf` (meaning `on_shelf` is `True`) **and** it's **not** `on_hold` (meaning `on_hold` is `False`), print: `"Book is available to be borrowed"`. 
+- **Else**, print: `"Book is not available to be borrowed"`.
+
+```python
+### START CODE HERE ###
+
+# Create an if/else statment
+# Check if "book['on_shelf']" equals "True" and "book['on_hold']" equals "False" 
+if book['on_shelf'] == True and book['on_hold'] == False: # @REPLACE # Add your if statment here
+    
+    # Print "Book is available to be borrowed"
+    print("Book is available to be borrowed") # @REPLACE # Add your print here
+    
+else: # @REPLACE # Add your else statment here
+    
+    # Print "Book is not available to be borrowed"
+    print("Book is not available to be borrowed") # @REPLACE # Add your print here
+
+### END CODE HERE ###
+```
+
+#### Expected Output:
+
+```
+Book is not available to be borrowed
+```
+
+```python
+### Test your code. Run this.
+
+test_your_code.exercise_2()
+```
+
+## Exercise 3: On Hold or Overdue? ⏳
+
+**The Situation:**
+
+Sadly, it turns out that "To Kill a Mockingbird" is currently checked out. 😩  However, the interested reader would like to be next in line!  You need to put the book on hold for them, but first, you want to check if it's overdue.
+
+**Your Task:**
+
+Write an `if/else` statement that does the following:
+
+- **If** the book is `overdue` (meaning `overdue` is `True`), print: `"Book is overdue - Contact <Borrower's name> to return it"` (make sure to replace `<Borrower's name>` with the actual borrower's name from the dictionary). You can use an f-string to insert the borrower's name. 
+- **Else**:
+    - Set the `on_hold` status of the book to `True` because you're now placing it on hold for the next reader.
+    - Print: `"Book has been put on hold"`.
+
+```python
+### START CODE HERE ###
+
+# Create an if/else statment
+# Check if "book['overdue']" equals "True"
+if book['overdue'] == True: # @REPLACE # Add your if statment here
+    
+    # Print "Book is overdue - Contact <Borrower's name> to return it"
+    # Hint: Use print with f-string to get "book['borrower']"'s name
+    print(f"Book is overdue - Contact {book['borrower']} to return it") # @REPLACE # Add your print here
+    
+else: # @REPLACE # Add your else statment here
+    
+    # Set "book['on_hold']" to "True"
+    book['on_hold'] = True # @REPLACE # Add your print here
+    
+    # Print "Book has been put on hold"
+    print("Book has been put on hold") # @REPLACE # Add your print here
+
+### END CODE HERE ###
+```
+
+#### Expected Output:
+
+```
+Book is overdue - Contact Arthur Dent to return it
+```
+
+```python
+### Test your code. Run this.
+
+test_your_code.exercise_3()
+```
+
+## Exercise 4: Tracking Down the Borrower 🔎
+
+**The Situation:**
+
+"To Kill a Mockingbird" is indeed overdue!  It seems Arthur Dent has been enjoying it a little too long.  You need to send him a friendly reminder email.  However, you only have his name – you need to find his email address from the library's records.
+
+**Your Task:**
+
+You have a list called `borrowers_list` (provided below) that contains dictionaries. Each dictionary represents a borrower and has their `name`, `email`, and `phone`. Your task is to find Arthur Dent's email address from this list.
+
+1. **Iterate through the `borrowers_list` using a `for` loop.**
+2. **Inside the loop, check if the `name` in the current borrower's dictionary matches the name stored in `book['borrower']`.**
+   - **If there's a match, store the corresponding `email` from that borrower's dictionary into a variable called `borrower_email`.**
+
+```python
+# List of dictionaries with borrower contact information
+borrowers_list = [
+    {
+        "name": "Alice Johnson",
+        "email": "alice.johnson@dlailibray.com",
+        "phone": "+1111111111"
+    },
+    {
+        "name": "Bob Smith",
+        "email": "bob.smith@dlailibray.com",
+        "phone": "+2222222222"
+    },
+    {
+        "name": "Arthur Dent",
+        "email": "arthur.dent@dlailibray.com",
+        "phone": "+3333333333"
+    },
+    {
+        "name": "Diana Prince",
+        "email": "diana.prince@dlailibray.com",
+        "phone": "+4444444444"
+    }
+]
+```
+
+```python
+### START CODE HERE ###
+
+# Iterate through the borrowers_list
+# Look for 'borrower' in `borrowers_list`
+for borrower in borrowers_list: # @REPLACE # Add your 'for' loop here
+    
+    # Check if the name "book['borrower']" equals "borrower['name']"
+    if book['borrower'] == borrower['name']: # @REPLACE # Add your if statment here
+        
+        # Set "borrower_email" equals "borrower['email']"
+        borrower_email = borrower['email'] # @REPLACE EQUALS # Add your code here
+
+### END CODE HERE ###
+
+# Print the information
+print(f"{book['borrower']}'s email is: {borrower_email}")
+```
+
+#### Expected Output:
+
+```
+Arthur Dent's email is: arthur.dent@dlailibray.com
+```
+
+```python
+### Test your code. Run this.
+
+test_your_code.test_exercise_4(borrower_email)
+```
+
+## Exercise 5:  The LLM to the Rescue! 🤖
+
+**The Situation:**
+
+You've got Arthur's email address – great! Now, it's time to write him that overdue notice. To make your life easier, you decide to use an LLM (Large Language Model) to generate the email for you. LLMs are excellent at understanding instructions and crafting text.
+
+**Your Task:**
+
+You'll provide the LLM with a `prompt`, which is essentially a set of instructions and information that guides it in generating the desired output.
+
+1. **You have the following pieces of information available:**
+   - `person_name`: The borrower's name (already stored).
+   - `book_name`: The title of the overdue book (already stored).
+   - `book_author`: The author of the overdue book (already stored).
+   - `due_date`: Let's set a due date of "16 November 2024".
+
+2. **Write a `prompt` that asks the LLM to generate an email to `person_name`, requesting them to return the book `book_name` by `book_author` before the `due_date`.**
+
+   You have the flexibility to structure your prompt and wording as you see fit. The key is to include all four pieces of information (`person_name`, `book_name`, `book_author`, and `due_date`) naturally within the prompt's instructions. 
+
+   For example, your prompt could look something like this: 
+   "Please write a polite email to [person_name], reminding them to return the book [book_name] by [book_author].  The book was due on [due_date]."
+
+```python
+# Name of the borrower
+person_name = book['borrower']
+
+# Name of the book
+book_name = book['title']
+
+# Name of book's author
+book_author = book['author']
+
+# Due Date
+due_date = "16 November 2024"
+```
+
+```python
+### START CODE HERE ###
+
+### START OMIT BLOCK ###
+prompt = f"""
+Write an email to {person_name}, asking them to return the book {book_name} by the author {book_author} \
+before the due date of {due_date}.
+"""
+### END OMIT BLOCK ###
+# prompt = f"""
+# # Add your code here
+# """
+
+### END CODE HERE ###
+
+print(prompt)
+```
+
+#### Expected Output
+```
+Your prompt containing the following details of:
+- Arthur Dent
+- To Kill a Mockingbird
+- Harper Lee
+- 16 November 2024
+
+```
+
+**Note:** You will fail the below test if your prompt excludes any one of the above mentioned details.
+
+```python
+### Test your code. Run this.
+
+test_your_code.test_exercise_5(prompt)
+```
+
+### Submission Note:
+
+If you have passed all the tests upto this point, you can submit your assignment. Everything below this is OPTIONAL and will not affect your grading in anyway.
+
+Time to use the LLM! Let's import the `get_llm_response` function from the helper functions file.
+
+```python
+from helper_functions import get_llm_response
+```
+
+Pass your `prompt` to the `get_llm_response` function, and print the response.
+
+```python
+print(get_llm_response(prompt))
+```
+
+**Congratulations on finishing this module's assignment!** 🎉 You've successfully used your Python skills to help the librarian manage book records, find borrower information, and even draft an email using an LLM. Great work! 
