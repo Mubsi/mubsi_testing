@@ -1,0 +1,323 @@
+```markdown
+# 🚀 Pluto's Poetic Journey: A Python Programming Adventure!
+
+Welcome, young astronauts, to your next mission! 🧑‍🚀 In this exciting adventure, we'll be diving into the fascinating world of space exploration and poetry (yes, you read that right, poetry! 🖋️). We'll be using Python to analyze a captivating news article about the New Horizons spacecraft's journey to Pluto and its discoveries. Get ready to flex your coding muscles and unleash your inner poet! 💫
+
+## The Mission Briefing 📰
+
+Our mission begins with a recent news article detailing the incredible findings from the New Horizons mission. The spacecraft has sent back a treasure trove of information about the dwarf planet Pluto, revealing its secrets and captivating our imaginations. However, the article is quite long, and we need a more efficient way to understand its key themes. 
+
+This is where your Python skills blast off! 🚀 You'll use your knowledge of:
+
+* Defining functions 🧱
+* File reading 📖
+* Working with LLMs 🤖
+* Lists and Dictionaries 📚
+* And a dash of poetic flair ✨
+
+...to extract key topics from the article, analyze them, and even generate a beautiful poem! 
+
+Prepare for launch! 
+
+##  🛰️ Encountering Data: Reading the News Article (Exercise 1)
+
+First things first, we need to access the news article. It's like receiving a transmission from a faraway probe - we need to decode it first. 
+
+**Your Task:**
+
+* Define a Python function called `read_article` that takes a `text_file` (string) as a parameter and reads the contents of the file. The function should return the contents of the file.
+
+```python
+# Define a Python function "read_article" and pass "text_file" as parameter
+def read_article(text_file):
+    
+    ### START CODE HERE ###
+    
+    # "Open" "text_file" in "read" mode
+    f = open(text_file, "r") # @REPLACE EQUALS # Add your code here
+    
+    # Use "f.read()" to read the file into "contents"
+    contents = f.read() # @REPLACE EQUALS # Add your code here
+    
+    # Close the file "f.close()"
+    f.close() # @REPLACE # Add your code here
+    
+    # Return "contents"
+    return contents # @REPLACE return # Add your return variable here
+    
+    ### END CODE HERE ###
+```
+
+```python
+# Test your code!
+test_your_code.exercise_1(read_article)
+```
+
+##  🔭  Decoding the Cosmos: Extracting Key Topics (Exercise 2)
+
+Great work, your `read_article` function is working like a charm! Let's use it to receive our transmission:
+
+```python
+news_article = read_article("news_article.txt")
+print(news_article)
+```
+
+That is a lengthy article!  To decipher its secrets without reading every word, let's employ a powerful tool: a Large Language Model (LLM). Think of it as your trusty AI assistant, capable of understanding and summarizing vast amounts of information. 🧠
+
+We'll ask our LLM to analyze the news article and pinpoint the three most important topics discussed. 
+
+```python
+prompt = f"""
+Read the contents of file {news_article}, and extract the key topics from it. Provide exactly 3 key topics.
+Each topic should not be more than 8 words.
+
+Provide each topic in a new line.
+
+Output Format:
+topic_1
+
+topic_2
+
+topic_3
+
+"""
+
+response = get_llm_response(prompt)
+```
+
+```python
+# Print the response
+print(response)
+```
+
+**Your Task:**
+
+Turn these topics into a single Python list.
+
+* Copy/paste the topics generated from `response` above into the `key_topics` list below.
+
+Be sure that:
+* Each topic is stored as a "string"
+* There are no duplicate topics in your list
+* Don't forget to use a comma `,` after each entry in the list (except the last one)
+    For example:
+                key_topics = [
+                "Topic 1",
+                "Topic 2",
+                "Topic 3"
+                ]
+
+```python
+key_topics = [
+    
+    ### START CODE HERE ###
+    
+    "Pluto's geological activity and features", # @REPLACE "# Copy/Paste your first topic as a string in here",
+    
+    "New Horizons' discoveries of Kuiper Belt Objects", # @REPLACE "# Copy/Paste your second topic as a string in here",
+    
+    "Future observations with Subaru Telescope collaboration" # @REPLACE "# Copy/Paste your third topic as a string in here"
+    
+    ### END CODE HERE ###
+
+]
+
+print_formatted_list(key_topics)
+```
+
+#### Expected Output:
+```
+[
+    *Unique Topic 1 as a string*,
+    *Unique Topic 2 as a string*,
+    *Unique Topic 3 as a string*
+]
+```
+
+```python
+# Test your code!    
+test_your_code.exercise_2(key_topics)    
+```
+
+## 🎨  The Poet's Palette: Organizing Your Topics  (Exercise 3)
+
+Excellent work, your `key_topics` list is ready for action! Now, let's imagine you want to write a poem inspired by these topics, but you're not particularly fond of one of them. 
+
+To give you more control over your creative process, we'll be crafting a list of dictionaries, with each dictionary representing a topic and a special "switch" called `to_use`. This "switch" will tell our LLM whether or not to include a particular topic in the poem. It's like having a poet's palette, carefully selecting the colors and themes you want to use in your masterpiece! 🎨
+
+**Your Task:**
+
+Create a list of dictionaries `topics_to_use` with each topic from the list `key_topics` and a switch `to_use`. 
+
+In each dictionary:
+* Use the list `key_topics` to get the topic and add them into the new list dictionary.
+* Add a boolean value in `to_use` (True would mean to use it in the Poem, False would mean not to use). Feel free to put True/False as you see desire.
+
+Be sure that:
+* There are no duplicate topics in your list
+* Don't forget to use a comma `,` after each entry in the dictionary (except the last one)
+    For example:
+                {
+                    "Topic 1": your topic,
+                    "to_use": a boolean value
+                }
+
+```python
+topics_to_use = [
+    
+    ### START CODE HERE ###
+    
+    {
+        # Use your the "first" entry from "key_topics" as "Topic 1"
+        # Hint: Remember, in Python, counting starts from zero (0)
+        "Topic 1": key_topics[0], # @REPLACE "Topic 1": # First element from the list "key_topics" goes here,
+        # Use a boolean value (True or False) for "to_use"
+        "to_use": True # @REPLACE "to_use": # Add boolean value here
+    },
+    {
+        # Use your the "second" entry from "key_topics" as "Topic 2"
+        "Topic 2": key_topics[1], # @REPLACE "Topic 2": # Second element from the list "key_topics" goes here,
+        # Use a boolean value (True or False) for "to_use"
+        "to_use": False, # @REPLACE "to_use": # Add boolean value here
+    },
+    {
+        # Use your the "third" entry from "key_topics" as "Topic 3"
+        "Topic 3": key_topics[2], # @REPLACE "Topic 3": # Third element from the list "key_topics" goes here,
+        # Use a boolean value (True or False) for "to_use"
+        "to_use": True # @REPLACE "to_use": # Add boolean value here
+    }
+    
+    ### END CODE HERE ###
+    
+]
+    
+print_formatted_list_of_dict(topics_to_use)
+```
+
+#### Expected Output:
+```
+[
+    {
+        "Topic 1": *Unique Topic 1 as a string*,
+        "to_use": *A boolean value*,
+    },
+    {
+        "Topic 2": *Unique Topic 2 as a string*,
+        "to_use": *A boolean value*,
+    },
+    {
+        "Topic 3": *Unique Topic 3 as a string*,
+        "to_use": *A boolean value*,
+    }
+]
+```
+
+```python
+# Test your code!    
+test_your_code.exercise_3(topics_to_use)    
+```
+
+
+##  🖋️  Cosmic Sonnets: Writing Your Space Poem (Exercise 4)
+
+With your `topics_to_use` list ready, it's time to enlist our LLM once again, this time for a more creative task: crafting our space poem! 🌠
+
+**Your Task:**
+
+Write a `prompt` that asks the LLM to generate a `poem`. The `poem` should be of exactly `4 (four)` `lines (lines)`. Your `prompt` should also include the `topics_to_use` list.
+
+    You have the flexibility to structure your prompt and wording as you see fit. The key is to include all three pieces of information (`topics_to_use` list, mention of writing a "poem" and using only "4 (four) lines (line)") naturally within the `prompt`'s instructions. 
+
+    For example, your prompt could look something like this: 
+    "Using only the topics from the list <topics_to_use>, write a 4-line poem."
+
+```python
+### START CODE HERE ###
+
+prompt = f"""# @KEEP
+# Add your code here
+"""
+### START OMIT BLOCK ###
+prompt = f"""
+Using only the topics from the list {topics_to_use}, write a 4-line poem.
+"""
+### END OMIT BLOCK ###
+
+### END CODE HERE ###
+
+print(prompt)
+```
+
+#### Expected Output:
+```
+Your prompt containing the following details:
+- `topics_to_use` list
+- Instructions of writing a "poem"
+- Using only "4 (four) lines (line)"
+```
+
+**Note:** You will fail the below test if your prompt excludes any one of the above mentioned details.
+
+```python
+# Test your code!    
+test_your_code.exercise_4(prompt, topics_to_use)    
+```
+
+```python
+poem = get_llm_response(prompt)
+```
+
+```python
+# Print your poem
+print(poem)
+```
+
+## 💾  Preserving the Verse: Saving Your Poem (Exercise 5)
+
+Your poem is a masterpiece! But like a fading transmission, it won't last forever unless we store it properly. 
+
+**Your Task:**
+
+* Create a Python function called `save_to_file` that uses the parameter `contents_to_save` (a string) and saves it in a file called `poem.txt`.
+
+```python
+# Define a Python function "save_to_file" and pass "contents_to_save" as parameter
+def save_to_file(contents_to_save):
+    
+    ### START CODE HERE ###
+    
+    # Using "Open", open or create a text file `poem.txt` in "write" mode
+    f = open("poem.txt", 'w') # @REPLACE f = open("poem.txt", '# Add your code here')
+    
+    ### END CODE HERE ###
+    
+    # Write "contents_to_save" in the file `poem.txt`
+    f.write(contents_to_save)
+    
+    # Close the file
+    f.close()
+```
+
+```python
+# Test your code!    
+test_your_code.exercise_5(save_to_file) 
+```
+
+Save your poem in the file! 
+
+```python
+save_to_file(poem)
+```
+
+You can use the following button to download the file you just wrote above.
+
+* Make sure to provide the right file name: `poem.txt` when asked!
+
+```python
+download_file()
+```
+
+## Mission Accomplished! 🎉
+
+Congratulations on completing this stellar coding adventure! You've successfully used Python to explore a news article, extract key topics, and even generate a space-themed poem! As you continue your coding journey, remember that the possibilities are as boundless as the universe itself. 🚀 Keep exploring, keep creating, and never stop reaching for the stars! ✨
+```
