@@ -5,8 +5,15 @@
    "id": "f13eafaf",
    "metadata": {},
    "source": [
-    "# Programming Assignment\n",
-    "\n"
+    "# Programming Assignment: Pluto's Poetic Journey 🚀 \n",
+    "\n",
+    "Welcome to your next mission! 🧑‍🚀 In this exciting adventure, you'll be diving into the fascinating world of space exploration and poetry (yes, you read that right, poetry! 🖋️). You'll be using Python to analyze a captivating news article about the New Horizons spacecraft's journey to Pluto and its discoveries. Get ready to flex your coding muscles and unleash your inner poet! 💫\n",
+    "\n",
+    "## The Mission Briefing 📰\n",
+    "\n",
+    "Your mission begins with a [news article](https://edition.cnn.com/2020/07/15/world/pluto-new-horizons-anniversary-scn-trnd/index.html) detailing the incredible findings from the New Horizons mission. The spacecraft has sent back a treasure trove of information about the dwarf planet Pluto, revealing its secrets and captivating our imaginations. However, the article is quite long, and you need a more efficient way to understand its key themes.\n",
+    "\n",
+    "Time for you Python skills to blast off! 🚀"
    ]
   },
   {
@@ -25,11 +32,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": null,
    "id": "c62e81b9",
    "metadata": {
     "deletable": false,
-    "editable": false
+    "editable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -39,26 +49,49 @@
   },
   {
    "cell_type": "markdown",
+   "id": "feec088c",
+   "metadata": {},
+   "source": [
+    "#### TIPS FOR SUCCESSFUL GRADING OF YOUR ASSIGNMENT:\n",
+    "\n",
+    "- The `### START CODE HERE ###` and `### END CODE HERE ###` comments are meant to signal in what parts of the assignment you are supposed to fill in your solutions.\n",
+    "\n",
+    "- All cells are frozen except for the ones where you need to submit your solutions or when explicitly mentioned you can interact with it.\n",
+    "\n",
+    "- The grader will only take into account the cells that are already provided for you so make sure to fill your solution code in those cells.\n",
+    "\n",
+    "- After each exercise there are cells that use the `test_your_code` from above. Make sure to run these as they will provide you with feedback regarding your solutions.\n",
+    "\n",
+    "- To submit your notebook, save it and then click on the blue submit button at the beginning of the page.\n",
+    "\n",
+    "With that out of the way, let's begin!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "0af9fc74",
    "metadata": {},
    "source": [
-    "## Exercise 1\n",
+    "## Exercise 1: Encountering Data - Reading the News Article 🛰️\n",
     "\n",
-    "Define a function that reads contents of a file, passed as a string.\n",
+    "First things first, you need to access the news article. It's like receiving a transmission from a faraway probe - you need to decode it first. \n",
     "\n",
     "**Your Task:**\n",
     "\n",
-    "* Create a Python function called `read_article` that takes a `text_file` (string) as a parameter and reads the contents of the file. The function should return the contents of the file.\n",
+    "* Define a Python function called `read_article` that takes a `text_file` (string) as a parameter and reads the contents of the file. The function should return the contents of the file.\n",
     "\n",
     "<span style=\"color: blue;\">**Hint**</span>: You can refer to the classroom lesson *Turning code blocks into reusable functions* for this."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": null,
    "id": "4b38da36",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -68,37 +101,29 @@
     "    ### START CODE HERE ###\n",
     "    \n",
     "    # \"Open\" \"text_file\" in \"read\" mode\n",
-    "    f = open(text_file, \"r\") # @REPLACE EQUALS # Add your code here\n",
+    "    f = # Add your code here\n",
     "    \n",
     "    # Use \"f.read()\" to read the file into \"contents\"\n",
-    "    contents = f.read() # @REPLACE EQUALS # Add your code here\n",
+    "    contents = # Add your code here\n",
     "    \n",
     "    # Close the file \"f.close()\"\n",
-    "    f.close() # @REPLACE # Add your code here\n",
+    "    # Add your code here\n",
     "    \n",
     "    # Return \"contents\"\n",
-    "    return contents # @REPLACE return # Add your return variable here\n",
+    "    return # Add your return variable here\n",
     "    \n",
     "    ### END CODE HERE ###"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "id": "d48d45f9",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001b[92m All tests passed!\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Test your code!\n",
     "test_your_code.exercise_1(read_article)"
@@ -109,98 +134,24 @@
    "id": "55be40ce",
    "metadata": {},
    "source": [
-    "## Exercise 2\n",
+    "## Exercise 2: Decoding the Cosmos - Extracting Key Topics 🔭\n",
     "\n",
-    "Now, let's read the article!\n",
+    "Great work, your `read_article` function is working like a charm! Use it to receive your transmission:\n",
     "\n",
     "You'll be using the news article [5 years after its Pluto flyby, New Horizons spacecraft forges ahead](https://edition.cnn.com/2020/07/15/world/pluto-new-horizons-anniversary-scn-trnd/index.html), published on July 15, 2020, written by CNN. This article has been saved in a `news_article.txt` file in your workspace.\n",
     "\n",
-    "Lets print the contents of this news article."
+    "Print the contents of this news article."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": null,
    "id": "d8961675",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "5 years after its Pluto flyby, New Horizons spacecraft forges ahead\n",
-      "\n",
-      "(CNN) — When NASA’s New Horizons spacecraft flew by Pluto five years ago this week, it captured detailed views of the mysterious icy dwarf planet on the edge of our solar system.\n",
-      "\n",
-      "Since then, data gathered about Pluto and its largest moon, Charon, have been used to gain insight about these planetary bodies 4 billion miles away from Earth.\n",
-      "\n",
-      "New Horizons launched in January 2006 and reached Pluto in July 2015, flying within 7,800 miles of Pluto’s surface.\n",
-      "\n",
-      "The stunning images shared by New Horizons showed both “Earth-like characteristics” on the surface as well as alien landscapes and geology not seen anywhere else in our solar system.\n",
-      "\n",
-      "And rather than being a quiet, frozen dwarf planet, data gathered by New Horizons revealed that Pluto is actually very active.\n",
-      "\n",
-      "New Horizons has entirely changed the way scientists understand Pluto and data from the mission is continuing to help researchers unravel secrets about the distant dwarf planet, as well as icy objects orbiting along the edge of our solar system.\n",
-      "\n",
-      "“New Horizons transformed Pluto from a fuzzy, telescopic dot into a living world with stunning diversity and surprising complexity,” said Hal Weaver in a statement.\n",
-      "\n",
-      "Weaver is the New Horizons project scientist at the Johns Hopkins Applied Physics Laboratory, which designed, built and operates the spacecraft.\n",
-      "\n",
-      "“The Pluto encounter was exploration at its finest, a real tribute to the vision and persistence of the New Horizons team,” he said.\n",
-      "\n",
-      "New Horizons' revelations\n",
-      "\n",
-      "Pluto is tiny but mighty, smaller than our moon and only about 1,400 miles wide, or half the width of the United States. Charon, the largest of Pluto’s five moons, is so similar in size to Pluto that they orbit each other like a double planet system.\n",
-      "\n",
-      "If you were to stand on the surface of Pluto, which has an average temperature of negative 387 degrees Fahrenheit, you would see blue skies, red snow and mountains that tower like the Rockies, according to NASA. New Horizons also revealed the strange mechanics of Pluto’s “beating” heart-shaped glacier, similar in size to Texas, that explain the planet’s exaggerated tilt and even helps drive the wind on Pluto.\n",
-      "\n",
-      "The heart-shaped feature is known as Tombaugh Regio, named in honor of astronomer Clyde Tombaugh, who discovered Pluto in 1930.\n",
-      "\n",
-      "Much of the dwarf planet’s nitrogen ice content can be found in this region, concentrated in a deep basin called Sputnik Planitia because the elevation is 1.9 miles lower than the surface. The ice sheet spans 620 miles. The basin makes up the “left lobe” of the heart, while the right side is home to nitrogen glaciers and highlands.\n",
-      "\n",
-      "In daytime, Pluto’s frozen nitrogen heart warms enough to become vapor. By night, it’s condensing and turning to ice again. The researchers call this Pluto’s “heartbeat,” which controls atmospheric circulation of nitrogen winds around the planet.\n",
-      "\n",
-      "Some scientists also believe there is a liquid ocean beneath Pluto’s ice shell that is estimated to be 249 miles thick. But they thought it formed later in Pluto’s history as radioactive elements were heated near the dwarf planet’s rocky core and decayed. This heat could have been enough to melt ice and form a subsurface ocean.\n",
-      "\n",
-      "But New Horizons data suggested otherwise. New research based on that data has suggested that Pluto actually started out in a hot formation scenario. In that scenario, the liquid ocean would slowly freeze over time, although not completely, and cause the extensional faults seen by New Horizons in Pluto’s icy crust.\n",
-      "\n",
-      "This long, slow freeze of the subsurface ocean could also explain the mix of features on Pluto’s surface because expansion would occur throughout the history of the dwarf planet.\n",
-      "\n",
-      "New Horizons’ images of Pluto and Charon also revealed pock-marked surfaces. They’re covered in large craters.\n",
-      "\n",
-      "The craters reveal that small Kuiper Belt objects less than 100 kilometers in size probably created them when they collided with Pluto and Charon. And because of what scientists know about impact crater formation, the fact that no craters were found smaller than 13 kilometers in diameter means there are fewer Kuiper Belt objects smaller than 2 kilometers than astronomers had predicted.\n",
-      "\n",
-      "This provides more support for the idea that Kuiper Belt objects are not pieces of space rock formed from collisions but actual intact “leftovers” from when the solar system was forming billions of years ago.\n",
-      "\n",
-      "Pluto also has other surprising features, such as dunes. But these aren’t like sand dunes on Earth; Pluto’s dunes are made from solid methane ice grains and sculpted by the wind. Within our solar system, dunes are rarer than you might think. They exist only on Earth, Mars, Venus, Saturn’s moon Titan and Comet 67P.\n",
-      "\n",
-      "These dunes are largely undisturbed on Pluto’s icy crust, which suggested that they were formed within the past 500,000 years – or even more recently. Pluto presents a bit of an age conundrum this way.\n",
-      "\n",
-      "The dwarf planet has polygonal shapes and features that indicate the surface is geologically active and young. The surface itself is only about 500,000 years old, although the dwarf planet itself is about 4.5 billion years old. This activity is most likely caused by a thermal, convective overturning of the ice.\n",
-      "\n",
-      "These are only a few of the discoveries made using data provided by New Horizons and even more will be made in the future as scientists work through the wealth of information provided by the flyby.\n",
-      "\n",
-      "“It’s clear to me that the solar system saved the best for last!” said Alan Stern, New Horizons principal investigator from the Southwest Research Institute, Boulder, Colorado, in a statement. “We could not have explored a more fascinating or scientifically important planet at the edge of our solar system. The New Horizons team worked for 15 years to plan and execute this flyby and Pluto paid us back in spades!”\n",
-      "\n",
-      "What's next\n",
-      "\n",
-      "In January 2019, New Horizons conducted the first flyby of a distant Kuiper Belt Object, which has since been named Arrokoth, allowing researchers to study these remnants of solar system formation in detail.\n",
-      "\n",
-      "New Horizons continues to explore the outer reaches of our solar system, sharing its unique view of the stars billions of miles away from Earth. Meanwhile, it’s receiving some scouting help from an Earth-based telescope.\n",
-      "\n",
-      "The Subaru Telescope, located on Mauna Kea in Hawaii, is operated by the National Astronomical Observatory of Japan. It’s helping to search for potential target candidates for New Horizons to observe next.\n",
-      "\n",
-      "“We are using the Subaru Telescope because it is the best in the world for our search purposes,” Stern said. “This is due to its unique combination of telescope size – one of the very largest anywhere, and Hyper Suprime-Cam’s wide field of view – which can discover many Kuiper Belt objects at once.”\n",
-      "\n",
-      "Currently, Subaru is observing an area in the Sagittarius constellation, where New Horizons is located. The Subaru observation team expects to find hundreds of new Kuiper Belt Objects, with 50 that should be at the right distance from New Horizons to be observed.\n",
-      "\n",
-      "They may find another one that is perfectly situated for a flyby, such as Arrokoth.\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "news_article = read_article(\"news_article.txt\")\n",
     "print(news_article)"
@@ -211,12 +162,14 @@
    "id": "5096cb79",
    "metadata": {},
    "source": [
-    "That is a lengthy article to read! Let's usse an LLM to extract the key topics from this article."
+    "That is a lengthy article! To decipher its secrets without reading every word, employ a powerful tool: a Large Language Model (LLM). Think of it as your trusty AI assistant, capable of understanding and summarizing vast amounts of information. 🧠\n",
+    "\n",
+    "You'll ask the LLM to analyze the news article and extract three key topics discussed."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": null,
    "id": "914ae915",
    "metadata": {
     "deletable": false,
@@ -225,7 +178,7 @@
    "outputs": [],
    "source": [
     "prompt = f\"\"\"\n",
-    "Read the contents of file {news_article}, and extract the key topics from it. Provide exactly 3 key topics.\n",
+    "Read the contents of file {news_article}, and extract the key topics discussed in it. Provide exactly 3 key topics.\n",
     "Each topic should not be more than 8 words.\n",
     "\n",
     "Provide each topic in a new line.\n",
@@ -244,25 +197,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": null,
    "id": "2f4ecfce",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Pluto's geological activity and features\n",
-      "\n",
-      "New Horizons' discoveries of Kuiper Belt Objects\n",
-      "\n",
-      "Future observations with Subaru Telescope collaboration\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Print the response\n",
     "print(response)"
@@ -281,45 +222,38 @@
     "Be sure that:\n",
     "* Each topic is stored as a \"string\"\n",
     "* There are no duplicate topics in your list\n",
-    "* Don't forget to use a comma `,` after each entry in the list (except the last one)\n",
-    "    For example:\n",
-    "                key_topics = [\n",
-    "                \"Topic 1\",\n",
-    "                \"Topic 2\",\n",
-    "                \"Topic 3\"\n",
-    "                ]"
+    "* Don't forget to use a comma `,` after each entry in the list. For example:\n",
+    "\n",
+    "```python\n",
+    "\tkey_topics = [\n",
+    "\t\t\"Topic 1\",\n",
+    "\t\t\"Topic 2\",\n",
+    "\t\t\"Topic 3\"\n",
+    "\t]\n",
+    "```"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": null,
    "id": "1849c026",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "[\n",
-      "    \"Pluto's geological activity and features\",\n",
-      "    \"New Horizons' discoveries of Kuiper Belt Objects\",\n",
-      "    \"Future observations with Subaru Telescope collaboration\"\n",
-      "]\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "key_topics = [\n",
     "    \n",
     "    ### START CODE HERE ###\n",
     "    \n",
-    "    \"Pluto's geological activity and features\", # @REPLACE \"# Copy/Paste your first topic as a string in here\",\n",
+    "    \"Copy/Paste your first topic as a string in here\",\n",
     "    \n",
-    "    \"New Horizons' discoveries of Kuiper Belt Objects\", # @REPLACE \"# Copy/Paste your second topic as a string in here\",\n",
+    "    \"Copy/Paste your second topic as a string in here\",\n",
     "    \n",
-    "    \"Future observations with Subaru Telescope collaboration\" # @REPLACE \"# Copy/Paste your third topic as a string in here\"\n",
+    "    \"Copy/Paste your third topic as a string in here\"\n",
     "    \n",
     "    ### END CODE HERE ###\n",
     "\n",
@@ -336,30 +270,22 @@
     "#### Expected Output:\n",
     "```\n",
     "[\n",
-    "    *Unique Topic 1 as a string*,\n",
-    "    *Unique Topic 2 as a string*,\n",
-    "    *Unique Topic 3 as a string*\n",
+    "    Unique Topic 1 as a string,\n",
+    "    Unique Topic 2 as a string,\n",
+    "    Unique Topic 3 as a string\n",
     "]\n",
     "```"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": null,
    "id": "ee125319",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001b[92m All tests passed!\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Test your code!    \n",
     "test_your_code.exercise_2(key_topics)    "
@@ -370,57 +296,48 @@
    "id": "cb80a2f8",
    "metadata": {},
    "source": [
-    "## Exercise 3\n",
+    "## Exercise 3: The Poet's Palette - Organizing Your Topics 🎨 \n",
     "\n",
-    "Is there a topic you don't like, and would not want for it to influence your poem? Create a Python list of dictionaries with each topic and a \"switch\" `to_use`, which will let the LLM know if it should use that topic in its poem.\n",
+    "Excellent work, your `key_topics` list is ready for action! Now, imagine you want to write a poem inspired by these topics, but you're not particularly fond of one or more of them.\n",
+    "\n",
+    "To give you more control over your creative process, you'll be crafting a list of dictionaries, with each dictionary representing a topic and a special \"switch\" called `to_use`. This \"switch\" will tell the LLM whether or not to include a particular topic in the poem. It's like having a poet's palette, carefully selecting the colors and themes you want to use in your masterpiece! 🎨\n",
     "\n",
     "**Your Task:**\n",
     "\n",
     "Create a list of dictionaries `topics_to_use` with each topic from the list `key_topics` and a switch `to_use`. \n",
     "\n",
     "In each dictionary:\n",
-    "* Use the list `key_topics` to get the topic and add them into the new list dictionary.\n",
-    "* Add a boolean value in `to_use` (True would mean to use it in the Poem, False would mean not to use). Feel free to put True/False as you see desire.\n",
+    "* Use the list `key_topics` to get the topic and add them into the new dictionary.\n",
+    "* Add a boolean value `to_use` (True would mean to use it in the Poem, False would mean not to use). Feel free to put True/False as you desire.\n",
     "\n",
     "Be sure that:\n",
     "* There are no duplicate topics in your list\n",
-    "* Don't forget to use a comma `,` after each entry in the dictionary (except the last one)\n",
-    "    For example:\n",
-    "                {\n",
-    "                    \"Topic 1\": your topic,\n",
-    "                    \"to_use\": a boolean value\n",
-    "                }\n"
+    "* Don't forget to use a comma `,` after each entry in the dictionary and after each dictionary. For example:\n",
+    "```python\n",
+    "\t{\n",
+    "\t\t\"Topic 1\": your topic,\n",
+    "\t\t\n",
+    "\t\t\"to_use\": a boolean value\n",
+    "\t},\n",
+    "\t{\n",
+    "\t\t\"Topic 2\": your topic,\n",
+    "\t\t\n",
+    "\t\t\"to_use\": a boolean value\n",
+    "\t}\n",
+    "```"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": null,
    "id": "f1134a06",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "[\n",
-      "    {\n",
-      "        \"Topic 1\": \"Pluto's geological activity and features\",\n",
-      "        \"to_use\": True,\n",
-      "    },\n",
-      "    {\n",
-      "        \"Topic 2\": \"New Horizons' discoveries of Kuiper Belt Objects\",\n",
-      "        \"to_use\": False,\n",
-      "    },\n",
-      "    {\n",
-      "        \"Topic 3\": \"Future observations with Subaru Telescope collaboration\",\n",
-      "        \"to_use\": True,\n",
-      "    }\n",
-      "]\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "topics_to_use = [\n",
     "    \n",
@@ -429,21 +346,24 @@
     "    {\n",
     "        # Use your the \"first\" entry from \"key_topics\" as \"Topic 1\"\n",
     "        # Hint: Remember, in Python, counting starts from zero (0)\n",
-    "        \"Topic 1\": key_topics[0], # @REPLACE \"Topic 1\": # First element from the list \"key_topics\" goes here,\n",
+    "        \"Topic 1\": # First element from the list \"key_topics\" goes here,\n",
+    "        \n",
     "        # Use a boolean value (True or False) for \"to_use\"\n",
-    "        \"to_use\": True # @REPLACE \"to_use\": # Add boolean value here\n",
+    "        \"to_use\": # Add boolean value here\n",
     "    },\n",
     "    {\n",
     "        # Use your the \"second\" entry from \"key_topics\" as \"Topic 2\"\n",
-    "        \"Topic 2\": key_topics[1], # @REPLACE \"Topic 2\": # Second element from the list \"key_topics\" goes here,\n",
+    "        \"Topic 2\": # Second element from the list \"key_topics\" goes here,\n",
+    "        \n",
     "        # Use a boolean value (True or False) for \"to_use\"\n",
-    "        \"to_use\": False, # @REPLACE \"to_use\": # Add boolean value here\n",
+    "        \"to_use\": # Add boolean value here\n",
     "    },\n",
     "    {\n",
     "        # Use your the \"third\" entry from \"key_topics\" as \"Topic 3\"\n",
-    "        \"Topic 3\": key_topics[2], # @REPLACE \"Topic 3\": # Third element from the list \"key_topics\" goes here,\n",
+    "        \"Topic 3\": # Third element from the list \"key_topics\" goes here,\n",
+    "        \n",
     "        # Use a boolean value (True or False) for \"to_use\"\n",
-    "        \"to_use\": True # @REPLACE \"to_use\": # Add boolean value here\n",
+    "        \"to_use\": # Add boolean value here\n",
     "    }\n",
     "    \n",
     "    ### END CODE HERE ###\n",
@@ -462,16 +382,16 @@
     "```\n",
     "[\n",
     "    {\n",
-    "        \"Topic 1\": *Unique Topic 1 as a string*,\n",
-    "        \"to_use\": *A boolean value*,\n",
+    "        \"Topic 1\": Unique Topic 1 as a string,\n",
+    "        \"to_use\": A boolean value,\n",
     "    },\n",
     "    {\n",
-    "        \"Topic 2\": *Unique Topic 2 as a string*,\n",
-    "        \"to_use\": *A boolean value*,\n",
+    "        \"Topic 2\": Unique Topic 2 as a string,\n",
+    "        \"to_use\": A boolean value,\n",
     "    },\n",
     "    {\n",
-    "        \"Topic 3\": *Unique Topic 3 as a string*,\n",
-    "        \"to_use\": *A boolean value*,\n",
+    "        \"Topic 3\": Unique Topic 3 as a string,\n",
+    "        \"to_use\": A boolean value,\n",
     "    }\n",
     "]\n",
     "```"
@@ -479,21 +399,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": null,
    "id": "385b80c8",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001b[92m All tests passed!\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Test your code!    \n",
     "test_your_code.exercise_3(topics_to_use)    "
@@ -504,13 +416,13 @@
    "id": "4d4b81c5",
    "metadata": {},
    "source": [
-    "## Exercise 4\n",
+    "## Exercise 4: Cosmic Sonnets - Writing Your Space Poem 🖋️\n",
     "\n",
-    "Its time to use the LLM to write the poem!\n",
+    "With your `topics_to_use` list ready, it's time to enlist the LLM once again, this time for a more creative task: crafting your space poem! 🌠\n",
     "\n",
     "**Your Task:**\n",
     "\n",
-    "Write a `prompt` that asks the LLM to generate a `poem`. The `poem` should be of exactly `4 (four)` `lines (lines)`. Your `prompt` should also include the `topics_to_use` list.\n",
+    "Write a `prompt` that asks the LLM to generate a `poem`. The `poem` should be of exactly `4 (four)` `lines (line)`. Your `prompt` should also include the `topics_to_use` list.\n",
     "\n",
     "    You have the flexibility to structure your prompt and wording as you see fit. The key is to include all three pieces of information (`topics_to_use` list, mention of writing a \"poem\" and using only \"4 (four) lines (line)\") naturally within the `prompt`'s instructions. \n",
     "\n",
@@ -520,33 +432,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": null,
    "id": "01aa0a13",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "Using only the topics from the list [{'Topic 1': \"Pluto's geological activity and features\", 'to_use': True}, {'Topic 2': \"New Horizons' discoveries of Kuiper Belt Objects\", 'to_use': False}, {'Topic 3': 'Future observations with Subaru Telescope collaboration', 'to_use': True}], write a 4-line poem.\n",
-      "\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "### START CODE HERE ###\n",
     "\n",
-    "prompt = f\"\"\"# @KEEP\n",
+    "prompt = f\"\"\"\n",
     "# Add your code here\n",
     "\"\"\"\n",
-    "### START OMIT BLOCK ###\n",
-    "prompt = f\"\"\"\n",
-    "Using only the topics from the list {topics_to_use}, write a 4-line poem.\n",
-    "\"\"\"\n",
-    "### END OMIT BLOCK ###\n",
     "\n",
     "### END CODE HERE ###\n",
     "\n",
@@ -577,21 +477,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": null,
    "id": "8d906b86",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001b[92m All tests passed!\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Test your code!    \n",
     "test_your_code.exercise_4(prompt, topics_to_use)    "
@@ -599,7 +491,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": null,
    "id": "1272e475",
    "metadata": {
     "deletable": false,
@@ -612,24 +504,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
+   "execution_count": null,
    "id": "d5ecfa35",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "In Pluto's heart, where secrets lie,  \n",
-      "Geological wonders beneath the sky.  \n",
-      "With Subaru's gaze, we seek to explore,  \n",
-      "The mysteries of space, forevermore.\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Print your poem\n",
     "print(poem)"
@@ -640,10 +521,9 @@
    "id": "fc435ce3",
    "metadata": {},
    "source": [
-    "## Exercise 5\n",
+    "## Exercise 5: Preserving the Verse - Saving Your Poem 💾 \n",
     "\n",
-    "\n",
-    "Write your poem to a file. Define a function that will write your generated `poem` to a file `poem.txt`.\n",
+    "Your poem is a masterpiece! But like a fading transmission, it won't last forever unless you store it properly.\n",
     "\n",
     "**Your Task:**\n",
     "\n",
@@ -654,10 +534,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
+   "execution_count": null,
    "id": "146ba041",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -667,7 +550,7 @@
     "    ### START CODE HERE ###\n",
     "    \n",
     "    # Using \"Open\", open or create a text file `poem.txt` in \"write\" mode\n",
-    "    f = open(\"poem.txt\", 'w') # @REPLACE f = open(\"poem.txt\", '# Add your code here')\n",
+    "    f = open(\"poem.txt\", '# Add your code here')\n",
     "    \n",
     "    ### END CODE HERE ###\n",
     "    \n",
@@ -680,21 +563,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 22,
+   "execution_count": null,
    "id": "0bbf26ed",
    "metadata": {
     "deletable": false,
     "editable": false
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\u001b[92m All tests passed!\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Test your code!    \n",
     "test_your_code.exercise_5(save_to_file) "
@@ -710,7 +585,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
+   "execution_count": null,
    "id": "615da860",
    "metadata": {
     "deletable": false,
@@ -745,15 +620,18 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "a768d6e4",
+   "cell_type": "markdown",
+   "id": "0ab954f5",
    "metadata": {},
-   "outputs": [],
-   "source": []
+   "source": [
+    "## Mission Accomplished! 🎉\n",
+    "\n",
+    "Congratulations on completing this stellar coding adventure! You've successfully used Python to explore a news article, extract key topics, and even generate a space-themed poem! As you continue your coding journey, remember that the possibilities are as boundless as the universe itself. 🚀 Keep exploring, keep creating, and never stop reaching for the stars! ✨"
+   ]
   }
  ],
  "metadata": {
+  "grader_version": "1",
   "kernelspec": {
    "display_name": "Python 3 (ipykernel)",
    "language": "python",
