@@ -5,7 +5,7 @@
    "id": "954b782c",
    "metadata": {},
    "source": [
-    "# Programming Assignment 📚\n",
+    "# Programming Assignment: Book Tracker 📚\n",
     "\n",
     "Welcome to to programming assignment of the second module of this course! \n",
     "\n",
@@ -21,7 +21,7 @@
     "\n",
     "Before you get started, as before, import `test_your_code` so that your implementated code can be tested.\n",
     "\n",
-    "     Cells that include the tag `### Test your code. Run this.` cannot be edited. Run them as they are."
+    "     Cells that include the tag `# Test your code!` cannot be edited. Run them as they are."
    ]
   },
   {
@@ -35,6 +35,24 @@
    "outputs": [],
    "source": [
     "import test_your_code"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ef2d8c4b",
+   "metadata": {},
+   "source": [
+    "#### TIPS FOR SUCCESSFUL GRADING OF YOUR ASSIGNMENT:\n",
+    "\n",
+    "- The `### START CODE HERE ###` and `### END CODE HERE ###` comments are meant to signal in what parts of the assignment you are supposed to fill in your solutions.\n",
+    "\n",
+    "- All cells are frozen except for the ones where you need to submit your solutions or when explicitly mentioned you can interact with it.\n",
+    "\n",
+    "- The grader will only take into account the cells that are already provided for you so make sure to fill your solution code in those cells.\n",
+    "\n",
+    "- After each exercise there are cells that use the `test_your_code` from above. Make sure to run these as they will provide you with feedback regarding your solutions.\n",
+    "\n",
+    "- To submit your notebook, save it and then click on the blue submit button at the beginning of the page."
    ]
   },
   {
@@ -71,7 +89,10 @@
    "execution_count": null,
    "id": "d4e586c4",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -79,16 +100,6 @@
     "\n",
     "# Create the dictionary, \"book\", with key/value pairs as mentioned above\n",
     "# Please be sure to use the same upper/lower case spellings structure\n",
-    "### START OMIT BLOCK ###\n",
-    "book = {\n",
-    "    'title': 'To Kill a Mockingbird',\n",
-    "    'author': 'Harper Lee',\n",
-    "    'on_shelf': False,\n",
-    "    'borrower': 'Arthur Dent',\n",
-    "    'overdue': True,\n",
-    "    'on_hold': False\n",
-    "}\n",
-    "### END OMIT BLOCK ###\n",
     "# Add your code here\n",
     "\n",
     "### END CODE HERE ###"
@@ -104,9 +115,8 @@
    },
    "outputs": [],
    "source": [
-    "### Test your code. Run this.\n",
-    "\n",
-    "test_your_code.test_exercise_1(book)"
+    "# Test your code!\n",
+    "test_your_code.exercise_1(book)"
    ]
   },
   {
@@ -123,7 +133,9 @@
     "Write an `if/else` statement that determines whether the book is available to borrow. \n",
     "\n",
     "- **If** the book is `on_shelf` (meaning `on_shelf` is `True`) **and** it's **not** `on_hold` (meaning `on_hold` is `False`), print: `\"Book is available to be borrowed\"`. \n",
-    "- **Else**, print: `\"Book is not available to be borrowed\"`.    "
+    "- **Else**, print: `\"Book is not available to be borrowed\"`.\n",
+    "\n",
+    "Notice that these two messages are static (you don't need to change them according to the value of a certain variable). **Because of this use regular strings and NOT f-strings.** It is a good practice to only use f-strings when necessary."
    ]
   },
   {
@@ -132,23 +144,26 @@
    "id": "4a334b64",
    "metadata": {
     "deletable": false,
-    "name": "exercise_2"
+    "name": "exercise_2",
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
     "### START CODE HERE ###\n",
     "\n",
-    "# Create an if/else statment\n",
-    "# Check if \"book['on_shelf']\" equals \"True\" and \"book['on_hold']\" equals \"False\" \n",
-    "if book['on_shelf'] == True and book['on_hold'] == False: # @REPLACE # Add your if statment here\n",
+    "# Create an if/else statement\n",
+    "# Check if \"book['on_shelf']\" equals \"True\" and \"book['on_hold']\" equals \"False\" (do this in the same line)\n",
+    "# Add your if statement here\n",
     "    \n",
     "    # Print \"Book is available to be borrowed\"\n",
-    "    print(\"Book is available to be borrowed\") # @REPLACE # Add your print here\n",
+    "    # Add your print here\n",
     "    \n",
-    "else: # @REPLACE # Add your else statment here\n",
+    "# Add your else statement here\n",
     "    \n",
     "    # Print \"Book is not available to be borrowed\"\n",
-    "    print(\"Book is not available to be borrowed\") # @REPLACE # Add your print here\n",
+    "    # Add your print here\n",
     "\n",
     "### END CODE HERE ###"
    ]
@@ -175,8 +190,7 @@
    },
    "outputs": [],
    "source": [
-    "### Test your code. Run this.\n",
-    "\n",
+    "# Test your code!\n",
     "test_your_code.exercise_2()"
    ]
   },
@@ -193,10 +207,12 @@
     "\n",
     "Write an `if/else` statement that does the following:\n",
     "\n",
-    "- **If** the book is `overdue` (meaning `overdue` is `True`), print: `\"Book is overdue - Contact <Borrower's name> to return it\"` (make sure to replace `<Borrower's name>` with the actual borrower's name from the dictionary `book`). **You can use an f-string to insert the borrower's name**. \n",
+    "- **If** the book is `overdue` (meaning `overdue` is `True`), print: `\"Book is overdue - Contact <Borrower's name> to return it\"` (make sure to replace `<Borrower's name>` with the actual borrower's name from the dictionary `book`). **You should use an f-string to insert the borrower's name**. \n",
     "- **Else**:\n",
     "    - Set the `on_hold` status of the book to `True` because you're now placing it on hold for the next reader.\n",
-    "    - Print: `\"Book has been put on hold\"`."
+    "    - Print: `\"Book has been put on hold\"`.\n",
+    "\n",
+    "Notice that one of these two messages is static, while the other needs to change according to the name of the borrower. **Because of this use a regular string for one and an f-string for the other**. Remember, it is a good practice to only use f-strings when necessary."
    ]
   },
   {
@@ -205,27 +221,30 @@
    "id": "7f1e81f3",
    "metadata": {
     "deletable": false,
-    "name": "exercise_3"
+    "name": "exercise_3",
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
     "### START CODE HERE ###\n",
     "\n",
-    "# Create an if/else statment\n",
+    "# Create an if/else statement\n",
     "# Check if \"book['overdue']\" equals \"True\"\n",
-    "if book['overdue'] == True: # @REPLACE # Add your if statment here\n",
+    "# Add your if statement here\n",
     "    \n",
     "    # Print \"Book is overdue - Contact <Borrower's name> to return it\"\n",
     "    # Hint: Use print with f-string to get \"book['borrower']\"'s name\n",
-    "    print(f\"Book is overdue - Contact {book['borrower']} to return it\") # @REPLACE # Add your print here\n",
+    "    # Add your print here\n",
     "    \n",
-    "else: # @REPLACE # Add your else statment here\n",
+    "# Add your else statement here\n",
     "    \n",
     "    # Set \"book['on_hold']\" to \"True\"\n",
-    "    book['on_hold'] = True # @REPLACE # Add your print here\n",
+    "    # Add your print here\n",
     "    \n",
     "    # Print \"Book has been put on hold\"\n",
-    "    print(\"Book has been put on hold\") # @REPLACE # Add your print here\n",
+    "    # Add your print here\n",
     "\n",
     "### END CODE HERE ###"
    ]
@@ -252,8 +271,7 @@
    },
    "outputs": [],
    "source": [
-    "### Test your code. Run this.\n",
-    "\n",
+    "# Test your code!\n",
     "test_your_code.exercise_3()"
    ]
   },
@@ -275,7 +293,10 @@
    "id": "1a0a8341",
    "metadata": {
     "deletable": false,
-    "editable": false
+    "editable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -283,22 +304,22 @@
     "borrowers_list = [\n",
     "    {\n",
     "        \"name\": \"Alice Johnson\",\n",
-    "        \"email\": \"alice.johnson@dlailibray.com\",\n",
+    "        \"email\": \"alice.johnson@dlailibrary.com\",\n",
     "        \"phone\": \"+1111111111\"\n",
     "    },\n",
     "    {\n",
     "        \"name\": \"Bob Smith\",\n",
-    "        \"email\": \"bob.smith@dlailibray.com\",\n",
+    "        \"email\": \"bob.smith@dlailibrary.com\",\n",
     "        \"phone\": \"+2222222222\"\n",
     "    },\n",
     "    {\n",
     "        \"name\": \"Arthur Dent\",\n",
-    "        \"email\": \"arthur.dent@dlailibray.com\",\n",
+    "        \"email\": \"arthur.dent@dlailibrary.com\",\n",
     "        \"phone\": \"+3333333333\"\n",
     "    },\n",
     "    {\n",
     "        \"name\": \"Diana Prince\",\n",
-    "        \"email\": \"diana.prince@dlailibray.com\",\n",
+    "        \"email\": \"diana.prince@dlailibrary.com\",\n",
     "        \"phone\": \"+4444444444\"\n",
     "    }\n",
     "]"
@@ -321,7 +342,11 @@
    "execution_count": null,
    "id": "17672ab7",
    "metadata": {
-    "deletable": false
+    "deletable": false,
+    "name": "exercise_4",
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -329,13 +354,13 @@
     "\n",
     "# Iterate through the borrowers_list\n",
     "# Look for 'borrower' in `borrowers_list`\n",
-    "for borrower in borrowers_list: # @REPLACE # Add your 'for' loop here\n",
+    "# Add your 'for' loop here\n",
     "    \n",
     "    # Check if the name \"book['borrower']\" equals \"borrower['name']\"\n",
-    "    if book['borrower'] == borrower['name']: # @REPLACE # Add your if statment here\n",
+    "    # Add your if statement here\n",
     "        \n",
     "        # Set \"borrower_email\" equals \"borrower['email']\"\n",
-    "        borrower_email = borrower['email'] # @REPLACE EQUALS # Add your code here\n",
+    "        borrower_email = # Add your code here\n",
     "\n",
     "### END CODE HERE ###\n",
     "\n",
@@ -350,7 +375,7 @@
    "source": [
     "#### Expected Output:\n",
     "```\n",
-    "Arthur Dent's email is: arthur.dent@dlailibray.com\n",
+    "Arthur Dent's email is: arthur.dent@dlailibrary.com\n",
     "```"
    ]
   },
@@ -364,9 +389,8 @@
    },
    "outputs": [],
    "source": [
-    "### Test your code. Run this.\n",
-    "\n",
-    "test_your_code.test_exercise_4(borrower_email)"
+    "# Test your code!\n",
+    "test_your_code.exercise_4(borrower_email)"
    ]
   },
   {
@@ -387,7 +411,10 @@
    "id": "a8e015eb",
    "metadata": {
     "deletable": false,
-    "editable": false
+    "editable": false,
+    "tags": [
+     "graded"
+    ]
    },
    "outputs": [],
    "source": [
@@ -423,17 +450,16 @@
    "cell_type": "code",
    "execution_count": null,
    "id": "8830078b",
-   "metadata": {},
+   "metadata": {
+    "deletable": false,
+    "tags": [
+     "graded"
+    ]
+   },
    "outputs": [],
    "source": [
     "### START CODE HERE ###\n",
     "\n",
-    "### START OMIT BLOCK ###\n",
-    "prompt = f\"\"\"\n",
-    "Write an email to {person_name}, asking them to return the book {book_name} by the author {book_author} \\\n",
-    "before the due date of {due_date}.\n",
-    "\"\"\"\n",
-    "### END OMIT BLOCK ###\n",
     "prompt = f\"\"\"\n",
     "# Add your code here\n",
     "\"\"\"\n",
@@ -471,9 +497,8 @@
    },
    "outputs": [],
    "source": [
-    "### Test your code. Run this.\n",
-    "\n",
-    "test_your_code.test_exercise_5(prompt)"
+    "# Test your code!\n",
+    "test_your_code.exercise_5(prompt)"
    ]
   },
   {
@@ -498,7 +523,10 @@
    "cell_type": "code",
    "execution_count": null,
    "id": "9c6fd695",
-   "metadata": {},
+   "metadata": {
+    "deletable": false,
+    "editable": false
+   },
    "outputs": [],
    "source": [
     "from helper_functions import get_llm_response"
@@ -516,7 +544,10 @@
    "cell_type": "code",
    "execution_count": null,
    "id": "da10423d",
-   "metadata": {},
+   "metadata": {
+    "deletable": false,
+    "editable": false
+   },
    "outputs": [],
    "source": [
     "print(get_llm_response(prompt))"
@@ -529,17 +560,10 @@
    "source": [
     "**Congratulations on finishing this module's assignment!** 🎉 You've successfully used your Python skills to help the librarian manage book records, find borrower information, and even draft an email using an LLM. Great work! "
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "d5cd14bb",
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {
+  "grader_version": "1",
   "kernelspec": {
    "display_name": "Python 3 (ipykernel)",
    "language": "python",
